@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsl.custombox.authentication.mapper.MenuMapper">
+
+    <sql id="menuColumnsByArg">
+        #{arg}.`id`,
+        #{arg}.`menu_name`,
+        #{arg}.`parent_id`,
+        #{arg}.`insert_time`,
+        #{arg}.`update_time`
+    </sql>
+
+    <sql id="menuColumns">
+        `id`,
+        `menu_name`,
+        `parent_id`,
+        `insert_time`,
+        `update_time`
+    </sql>
+
+    <select id="queryAll" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+        select
+        <include refid="menuColumns"/>
+        from menu
+    </select>
+
+    <select id="queryById" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+        select
+        <include refid="menuColumns"/>
+        from menu
+        where id = #{id}
+    </select>
+
+    <select id="queryByRoleId" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+        select
+            <include refid="menuColumns"><property name="arg" value="t"/></include>
+        from
+            menu m,
+            (select role_id, menu_id from role_menu where role_id = #{roleId}) t
+        where m.id = t.menu_id
+    </select>
+
+    <select id="queryByRoleIdes" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+        <foreach collection="list" item="roleId" separator="union all">
+            select
+            <include refid="menuColumns"><property name="arg" value="t"/></include>
+            from
+            menu m,
+            (select role_id, menu_id from role_menu where role_id = #{roleId}) t
+            where m.id = t.menu_id
+        </foreach>
+    </select>
+
+
+    <resultMap id="queryRoleByUserId" type="arraylist" autoMapping="true">
+
+    </resultMap>
+
+    <select id="queryByUserId" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+
+    </select>
+
+
+    <insert id="insert">
+        insert into
+        menu(menu_name, parent_id)
+        values(#{menuName}, #{parentId})
+    </insert>
+
+    <insert id="insertBatch">
+        insert into
+        menu(menu_name, parent_id)
+        <foreach collection="list" open="values" separator="," item="menu">
+            (#{menu.menuName}, #{menu.parentId})
+        </foreach>
+    </insert>
+
+    <update id="update">
+        update menu
+        <set>
+            <if test="menu.menuName != null and menu.menuName != ''">
+                menu_name = #{menuName}
+            </if>
+            <if test="menu.parentId != null">
+                parent_id = #{parentId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from menu where id = #{id}
+    </delete>
+</mapper>

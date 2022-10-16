@@ -1,0 +1,13 @@
+server:
+  port: 18881
+
+spring:
+  profiles:
+    active: local
+    include: localdb
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true # 大小驼峰转换

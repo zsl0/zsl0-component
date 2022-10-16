@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.zsl.custombox.swagger.config.SwaggerAutoConfiguration

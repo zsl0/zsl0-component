@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsl.custombox.authentication.mapper.RoleMapper">
+
+    <sql id="roleColumns">
+            `id`,
+            `role_name`,
+            `insert_time`,
+            `update_time`
+    </sql>
+
+    <select id="queryAll" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+        select
+            <include refid="roleColumns"/>
+        from role
+    </select>
+
+    <select id="queryById" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+        select
+            <include refid="roleColumns"/>
+        from role
+        where id = #{id}
+    </select>
+
+    <select id="queryByMenuId" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+        select
+            <include refid="roleColumns"/>
+        from
+            role r,
+            (select role_id, menu_id from role_menu where menu_id = #{menuId}) t
+        where r.id = t.role_id
+    </select>
+
+    <select id="queryByUserId" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+        select
+            <include refid="roleColumns"/>
+        from
+            role r,
+            (select role_id, user_id from user_menu where user_id = #{userId}) t
+        where r.id = t.role_id
+    </select>
+
+    <insert id="insert">
+        insert into role(role_name) values (#{roleName})
+    </insert>
+
+    <update id="update">
+        update role set role_name = #{roleName} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from role where id = #{id}
+    </delete>
+</mapper>

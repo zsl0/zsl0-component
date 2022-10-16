@@ -1,0 +1,7 @@
+# 数据源配置
+datasource:
+  hikari:
+    username: root
+    password: Mq9muBbwXts=
+    jdbc-url: jdbc:mysql://172.10.17.254:3306/pingan?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
