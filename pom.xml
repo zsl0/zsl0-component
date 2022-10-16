@@ -15,8 +15,8 @@
         <version>2.5.6</version>
     </parent>
 
-    <groupId>com.zsl.custombox</groupId>
-    <artifactId>zsl0-model</artifactId>
+    <groupId>com.zsl0</groupId>
+    <artifactId>zsl0-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>custom_box</name>
     <description>

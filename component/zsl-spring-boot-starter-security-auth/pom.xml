@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>component</artifactId>
-        <groupId>com.zsl.custombox</groupId>
+        <groupId>com.zsl0</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,13 +13,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zsl.custombox</groupId>
+            <groupId>com.zsl0</groupId>
             <artifactId>zsl-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>com.zsl.custombox</groupId>
+            <groupId>com.zsl0</groupId>
             <artifactId>zsl-spring-boot-starter-log</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

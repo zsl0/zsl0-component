@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>zsl0-model</artifactId>
-        <groupId>com.zsl.custombox</groupId>
+        <artifactId>zsl0-parent</artifactId>
+        <groupId>com.zsl0</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -23,28 +23,28 @@
     <dependencies>
         <!--        common组件-->
         <dependency>
-            <groupId>com.zsl.custombox</groupId>
+            <groupId>com.zsl0</groupId>
             <artifactId>zsl-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!--        log(AccessLog、OperationLog)组件-->
         <dependency>
-            <groupId>com.zsl.custombox</groupId>
+            <groupId>com.zsl0</groupId>
             <artifactId>zsl-spring-boot-starter-log</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!--        认证组件-->
         <dependency>
-            <groupId>com.zsl.custombox</groupId>
+            <groupId>com.zsl0</groupId>
             <artifactId>zsl-spring-boot-starter-security-auth</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!--        API文档组件-->
         <dependency>
-            <groupId>com.zsl.custombox</groupId>
+            <groupId>com.zsl0</groupId>
             <artifactId>zsl-spring-boot-starter-swagger</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
