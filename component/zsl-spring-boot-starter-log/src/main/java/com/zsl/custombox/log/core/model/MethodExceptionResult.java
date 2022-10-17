@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 /**
  * 方法异常结果
  *
- * @Author zsl
- * @Date 2022/5/23 23:56
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/23 23:56
+ * email 249269610@qq.com
  */
 @Data
 @AllArgsConstructor

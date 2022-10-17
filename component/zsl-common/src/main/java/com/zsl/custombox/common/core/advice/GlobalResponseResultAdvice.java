@@ -19,9 +19,9 @@ import java.util.Objects;
 /**
  * 全局统一返回处理（为每个web模块配置此advcie,并限制basePackages, 防止拦截其它controller 如：Swagger2Controller）
  *
- * @Author zsl
- * @Date 2022/5/15 19:10
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 19:10
+ * email 249269610@qq.com
  */
 //@ControllerAdvice(basePackages = "com.zsl.custombox.authentication.controller")
 @Order(Integer.MAX_VALUE - 20)

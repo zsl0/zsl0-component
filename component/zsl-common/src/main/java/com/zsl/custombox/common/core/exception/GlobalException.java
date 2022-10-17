@@ -3,9 +3,9 @@ package com.zsl.custombox.common.core.exception;
 import com.zsl.custombox.common.core.http.ResponseResultStatus;
 
 /**
- * @Author zsl
- * @Date 2022/6/1 23:11
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/1 23:11
+ * email 249269610@qq.com
  */
 public class GlobalException extends RuntimeException {
     /**

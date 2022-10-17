@@ -1,8 +1,8 @@
 package com.zsl.custombox.common.core.service.cache;
 
 /**
- * @Author zsl
- * @Date 2021/12/30 11:53
+ * @author zsl0
+ * create on 2021/12/30 11:53
  */
 public interface TokenServer {
     /**

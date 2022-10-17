@@ -1,8 +1,8 @@
 package com.zsl.custombox.common.core.service.cache;
 
 /**
- * @Author zsl
- * @Date 2021/12/29 11:08
+ * @author zsl0
+ * create on 2021/12/29 11:08
  */
 public interface CacheServer {
     /**

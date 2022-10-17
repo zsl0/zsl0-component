@@ -7,9 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * @Author zsl
- * @Date 2022/6/9 16:27
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/9 16:27
+ * email 249269610@qq.com
  */
 @Data
 @Builder

@@ -18,9 +18,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * 日志自动配置
  *
- * @Author zsl
- * @Date 2022/5/22 21:26
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/22 21:26
+ * email 249269610@qq.com
  */
 @Configuration
 @AutoConfigureAfter(LogAutoConfiguration.class)

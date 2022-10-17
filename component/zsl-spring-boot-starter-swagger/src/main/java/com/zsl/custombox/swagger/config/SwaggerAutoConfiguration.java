@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Import;
 /**
  * swagger自动配置类
  *
- * @Author zsl
- * @Date 2022/5/31 22:20
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/31 22:20
+ * email 249269610@qq.com
  */
 @Configuration
 @Import(SwaggerConfig.class)

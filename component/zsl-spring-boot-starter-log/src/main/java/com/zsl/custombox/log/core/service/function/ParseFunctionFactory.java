@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Author zsl
- * @Date 2022/5/25 23:34
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/25 23:34
+ * email 249269610@qq.com
  */
 public class ParseFunctionFactory {
     private Map<String, IParseFunction> allFunctionMap;

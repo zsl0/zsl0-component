@@ -16,9 +16,9 @@ import java.util.Objects;
 /**
  * 认证用户查询实现类
  *
- * @Author zsl
- * @Date 2022/6/8 16:37
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/8 16:37
+ * email 249269610@qq.com
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

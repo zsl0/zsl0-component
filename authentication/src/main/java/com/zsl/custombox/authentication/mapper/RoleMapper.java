@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * 角色Mapper
  *
- * @Author zsl
- * @Date 2022/6/9 14:45
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/9 14:45
+ * email 249269610@qq.com
  */
 public interface RoleMapper {
 

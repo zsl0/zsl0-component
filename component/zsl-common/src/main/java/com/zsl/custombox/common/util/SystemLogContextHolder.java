@@ -6,9 +6,9 @@ import com.zsl.custombox.common.model.log.SystemLogContext;
 /**
  * 线程安全日志记录
  *
- * @Author zsl
- * @Date 2022/5/22 16:57
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/22 16:57
+ * email 249269610@qq.com
  */
 public class SystemLogContextHolder {
     private static final ThreadLocal<SystemLogContext> SYSTEM_LOG_CONTEXT = new ThreadLocal<>();

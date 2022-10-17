@@ -5,9 +5,9 @@ import com.zsl.custombox.security.auth.core.model.DefaultUserDetails;
 /**
  * 认证用户查询接口
  *
- * @Author zsl
- * @Date 2022/6/8 16:35
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/8 16:35
+ * email 249269610@qq.com
  */
 public interface UserDetailsService {
 

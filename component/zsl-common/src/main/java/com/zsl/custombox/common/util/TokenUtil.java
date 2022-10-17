@@ -10,9 +10,9 @@ import java.util.Date;
 /**
  * token工具
  *
- * @Author zsl
- * @Date 2022/5/15 14:41
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 14:41
+ * email 249269610@qq.com
  */
 public class TokenUtil {
 

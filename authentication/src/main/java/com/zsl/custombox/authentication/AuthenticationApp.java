@@ -6,9 +6,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * @Author zsl
- * @Date 2022/5/15 15:57
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 15:57
+ * email 249269610@qq.com
  */
 @SpringBootApplication(scanBasePackages = {"com.zsl.custombox.common", "com.zsl.custombox.authentication"})
 public class AuthenticationApp {

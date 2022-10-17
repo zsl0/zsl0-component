@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 /**
  * 默认用户对象
  *
- * @Author zsl
- * @Date 2022/5/22 20:18
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/22 20:18
+ * email 249269610@qq.com
  */
 @NoArgsConstructor
 @AllArgsConstructor

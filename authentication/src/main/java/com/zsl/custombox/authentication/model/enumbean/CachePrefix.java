@@ -3,9 +3,9 @@ package com.zsl.custombox.authentication.model.enumbean;
 /**
  * 缓存前缀
  *
- * @Author zsl
- * @Date 2022/6/9 17:27
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/9 17:27
+ * email 249269610@qq.com
  */
 public enum CachePrefix {
     TOKEN("pingan:auth:token:")

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author zsl
- * @Date 2021/12/30 11:59
+ * @author zsl0
+ * create on 2021/12/30 11:59
  */
 //@Component
 public class TokenServerImpl implements TokenServer {

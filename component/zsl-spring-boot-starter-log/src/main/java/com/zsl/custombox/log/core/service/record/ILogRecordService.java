@@ -4,9 +4,9 @@ package com.zsl.custombox.log.core.service.record;
 import com.zsl.custombox.log.core.model.logrecord.LogRecord;
 
 /**
- * @Author zsl
- * @Date 2022/5/25 23:37
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/25 23:37
+ * email 249269610@qq.com
  */
 public interface ILogRecordService {
     /**

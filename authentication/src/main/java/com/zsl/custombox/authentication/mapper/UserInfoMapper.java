@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * 用户Mapper
  *
- * @Author zsl
- * @Date 2022/6/8 16:52
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/8 16:52
+ * email 249269610@qq.com
  */
 public interface UserInfoMapper {
     /**

@@ -3,9 +3,9 @@ package com.zsl.custombox.common.core.http;
 /**
  * 自定义返回状态码
  *
- * @Author zsl
- * @Date 2022/5/15 18:58
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 18:58
+ * email 249269610@qq.com
  */
 public enum ResponseResultStatus {
     SUCCESS(200, "操作成功!"),

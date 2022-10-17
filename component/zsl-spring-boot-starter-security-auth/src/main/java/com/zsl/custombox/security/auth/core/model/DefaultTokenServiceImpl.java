@@ -12,9 +12,9 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * token令牌存储服务
  *
- * @Author zsl
- * @Date 2022/6/2 10:05
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/2 10:05
+ * email 249269610@qq.com
  */
 public class DefaultTokenServiceImpl implements TokenServer {
     private final Map<String, Value> tokenCache = new ConcurrentHashMap<>(64);

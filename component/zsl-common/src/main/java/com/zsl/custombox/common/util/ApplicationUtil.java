@@ -5,9 +5,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- * @Author zsl
- * @Date 2022/5/15 19:53
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 19:53
+ * email 249269610@qq.com
  */
 public class ApplicationUtil implements ApplicationContextAware {
     private static ApplicationContext applicationContext;

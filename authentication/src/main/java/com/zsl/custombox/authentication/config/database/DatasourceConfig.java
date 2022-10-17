@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 /**
- * @Author zsl
- * @Date 2022/4/19 16:21
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/4/19 16:21
+ * email 249269610@qq.com
  */
 @Configuration
 public class DatasourceConfig {

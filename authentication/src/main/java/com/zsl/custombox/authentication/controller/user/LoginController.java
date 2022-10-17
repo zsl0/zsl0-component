@@ -25,9 +25,9 @@ import java.util.List;
 /**
  * 登录
  *
- * @Author zsl
- * @Date 2022/6/5 11:12
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/5 11:12
+ * email 249269610@qq.com
  */
 @RestController
 @RequestMapping("/user/login")

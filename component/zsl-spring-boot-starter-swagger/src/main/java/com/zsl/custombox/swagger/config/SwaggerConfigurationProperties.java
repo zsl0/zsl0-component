@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 /**
  * swagger配置资源
  *
- * @Author zsl
- * @Date 2022/5/31 22:21
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/31 22:21
+ * email 249269610@qq.com
  */
 @ConfigurationProperties(prefix = "swagger")
 public class SwaggerConfigurationProperties {

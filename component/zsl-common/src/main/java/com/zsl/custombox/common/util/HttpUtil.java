@@ -6,9 +6,9 @@ import java.util.Objects;
 /**
  * http工具
  *
- * @Author zsl
- * @Date 2022/6/1 22:34
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/1 22:34
+ * email 249269610@qq.com
  */
 public class HttpUtil {
 

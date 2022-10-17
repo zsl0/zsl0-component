@@ -6,9 +6,9 @@ import com.zsl.custombox.authentication.model.pojo.login.MenuNode;
 import java.util.List;
 
 /**
- * @Author zsl
- * @Date 2022/6/9 17:38
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/9 17:38
+ * email 249269610@qq.com
  */
 public interface MenuService {
 

@@ -4,9 +4,9 @@ import com.zsl.custombox.log.core.model.logrecord.LogRecord;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @Author zsl
- * @Date 2022/5/25 23:38
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/25 23:38
+ * email 249269610@qq.com
  */
 @Slf4j
 public class DefaultLogRecordServiceImpl implements ILogRecordService {

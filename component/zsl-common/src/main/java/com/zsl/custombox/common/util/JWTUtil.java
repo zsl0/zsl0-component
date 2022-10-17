@@ -17,9 +17,9 @@ import java.util.UUID;
 /**
  * 基于JWT获取Token令牌
  *
- * @Author zsl
- * @Date 2022/5/15 14:41
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 14:41
+ * email 249269610@qq.com
  */
 public class JWTUtil {
 

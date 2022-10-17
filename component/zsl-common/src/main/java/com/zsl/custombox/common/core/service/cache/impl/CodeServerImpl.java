@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
- * @Author zsl
- * @Date 2021/12/31 10:01
+ * @author zsl0
+ * create on 2021/12/31 10:01
  */
 //@Component
 public class CodeServerImpl implements CodeServer {

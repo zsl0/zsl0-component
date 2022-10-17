@@ -5,9 +5,9 @@ import lombok.Data;
 /**
  * 自定义返回结果集
  *
- * @Author zsl
- * @Date 2022/5/15 18:55
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 18:55
+ * email 249269610@qq.com
  */
 @Data
 public class ResponseResult<T> {

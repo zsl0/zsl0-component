@@ -26,9 +26,9 @@ import static com.zsl.custombox.common.core.http.ResponseResultStatus.FORBIDDEN;
 /**
  * 认证安全拦截器
  *
- * @Author zsl
- * @Date 2022/5/22 20:01
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/22 20:01
+ * email 249269610@qq.com
  */
 @Setter
 public class AuthSecurityInterceptor implements HandlerInterceptor {

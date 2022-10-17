@@ -1,9 +1,9 @@
 package com.zsl.custombox.security.auth.core.model;
 
 /**
- * @Author zsl
- * @Date 2022/6/1 23:36
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/1 23:36
+ * email 249269610@qq.com
  */
 public interface PermissionService {
 

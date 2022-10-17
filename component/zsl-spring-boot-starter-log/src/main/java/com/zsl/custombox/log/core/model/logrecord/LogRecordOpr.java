@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 /**
  * todo 待升级为将LogRecord注解信息解析为当前对象
  *
- * @Author zsl
- * @Date 2022/5/29 11:51
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/29 11:51
+ * email 249269610@qq.com
  */
 @Data
 @AllArgsConstructor

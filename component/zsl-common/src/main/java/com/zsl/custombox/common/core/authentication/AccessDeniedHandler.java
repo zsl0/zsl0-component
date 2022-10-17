@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Author zsl
- * @Date 2022/5/16 22:12
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/16 22:12
+ * email 249269610@qq.com
  */
 public class AccessDeniedHandler {
 

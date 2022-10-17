@@ -8,9 +8,9 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @Author zsl
- * @Date 2022/6/6 17:00
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/6 17:00
+ * email 249269610@qq.com
  */
 //@Configuration
 public class MyWebMvcConfig implements WebMvcConfigurer {

@@ -20,9 +20,9 @@ import java.util.List;
  * 访问记录(系统日志)
  *  实现@LogRecord注解实现操作日志
  *
- * @Author zsl
- * @Date 2022/5/22 14:55
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/22 14:55
+ * email 249269610@qq.com
  */
 public class AccessLogInterceptor implements HandlerInterceptor {
     private final Logger log = LoggerFactory.getLogger(this.getClass());

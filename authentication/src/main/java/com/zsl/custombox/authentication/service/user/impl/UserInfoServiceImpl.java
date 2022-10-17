@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @Author zsl
- * @Date 2022/6/10 17:32
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/10 17:32
+ * email 249269610@qq.com
  */
 @Service
 public class UserInfoServiceImpl implements UserInfoService {

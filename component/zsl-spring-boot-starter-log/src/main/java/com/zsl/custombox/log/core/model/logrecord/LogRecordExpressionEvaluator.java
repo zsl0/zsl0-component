@@ -12,9 +12,9 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 解析对象
  *
- * @Author zsl
- * @Date 2022/5/25 21:49
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/25 21:49
+ * email 249269610@qq.com
  */
 public class LogRecordExpressionEvaluator extends CachedExpressionEvaluator {
     private Map<ExpressionKey, Expression> expressionCache = new ConcurrentHashMap<>(64);

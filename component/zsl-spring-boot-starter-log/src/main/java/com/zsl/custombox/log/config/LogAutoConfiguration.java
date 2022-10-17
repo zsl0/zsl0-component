@@ -22,9 +22,9 @@ import java.util.List;
 /**
  * 日志自动配置，AccessLogInterceptor(访问日志)、LogRecordAspect(操作日志)
  *
- * @Author zsl
- * @Date 2022/5/22 21:04
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/22 21:04
+ * email 249269610@qq.com
  */
 @Configuration
 public class LogAutoConfiguration implements WebMvcConfigurer {

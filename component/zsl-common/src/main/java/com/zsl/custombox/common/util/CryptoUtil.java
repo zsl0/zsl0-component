@@ -7,9 +7,9 @@ import java.security.Key;
 import java.util.Base64;
 
 /**
- * @Author zsl
- * @Date 2022/1/26 10:16
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/1/26 10:16
+ * email 249269610@qq.com
  */
 public class CryptoUtil {
     private static final String ALGORITHM = "DESede"; // 使用的加密算法

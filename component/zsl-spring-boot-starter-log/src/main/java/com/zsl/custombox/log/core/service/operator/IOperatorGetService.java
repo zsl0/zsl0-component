@@ -4,9 +4,9 @@ import com.zsl.custombox.common.model.authentication.Authentication;
 import org.springframework.expression.spel.ast.Operator;
 
 /**
- * @Author zsl
- * @Date 2022/5/29 13:09
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/29 13:09
+ * email 249269610@qq.com
  */
 public interface IOperatorGetService {
     /**

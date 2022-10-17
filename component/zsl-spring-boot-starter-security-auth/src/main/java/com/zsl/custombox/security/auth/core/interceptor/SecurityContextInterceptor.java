@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
  * 获取全局存储用户信息SecurityContextHolder判断凭证是否正确
  *      目前基于角色管理
  *
- * @Author zsl
- * @Date 2022/5/22 20:02
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/22 20:02
+ * email 249269610@qq.com
  */
 public class SecurityContextInterceptor implements HandlerInterceptor {
 

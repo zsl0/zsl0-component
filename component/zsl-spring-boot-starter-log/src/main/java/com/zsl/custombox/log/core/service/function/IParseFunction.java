@@ -1,9 +1,9 @@
 package com.zsl.custombox.log.core.service.function;
 
 /**
- * @Author zsl
- * @Date 2022/5/25 23:32
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/25 23:32
+ * email 249269610@qq.com
  */
 public interface IParseFunction {
 

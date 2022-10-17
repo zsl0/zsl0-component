@@ -9,9 +9,9 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 /**
- * @Author zsl
- * @Date 2022/6/15 11:22
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/15 11:22
+ * email 249269610@qq.com
  */
 @Mapper
 public interface Role2RoleVoMapper {

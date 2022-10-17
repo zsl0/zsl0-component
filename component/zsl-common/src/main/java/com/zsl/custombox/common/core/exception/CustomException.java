@@ -6,9 +6,9 @@ import lombok.EqualsAndHashCode;
 /**
  * Api异常
  *
- * @Author zsl
- * @Date 2022/5/15 19:29
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 19:29
+ * email 249269610@qq.com
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

@@ -14,9 +14,9 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 处理注解信息操作源
  *
- * @Author zsl
- * @Date 2022/5/25 22:37
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/25 22:37
+ * email 249269610@qq.com
  */
 public class LogRecordOperationSource {
     private Map<AnnotatedElementKey, List<LogRecordOpr>> operationCache = new ConcurrentHashMap<>(64);

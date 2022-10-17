@@ -1,8 +1,8 @@
 package com.zsl.custombox.common.core.service.cache;
 
 /**
- * @Author zsl
- * @Date 2021/12/31 10:00
+ * @author zsl0
+ * create on 2021/12/31 10:00
  */
 public interface CodeServer {
     void set(String key, String value);

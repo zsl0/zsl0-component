@@ -5,9 +5,9 @@ import com.zsl.custombox.authentication.model.pojo.login.UserInfo;
 import java.util.List;
 
 /**
- * @Author zsl
- * @Date 2022/6/10 17:29
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/10 17:29
+ * email 249269610@qq.com
  */
 public interface UserInfoService {
 

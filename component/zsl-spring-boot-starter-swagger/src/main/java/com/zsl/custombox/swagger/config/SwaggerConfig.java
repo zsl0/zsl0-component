@@ -20,9 +20,9 @@ import java.util.List;
 /**
  * swagger配置
  *
- * @Author zsl
- * @Date 2022/5/15 17:45
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 17:45
+ * email 249269610@qq.com
  */
 @EnableConfigurationProperties(SwaggerConfigurationProperties.class)
 @EnableSwagger2

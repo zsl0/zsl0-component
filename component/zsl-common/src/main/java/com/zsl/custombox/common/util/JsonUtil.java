@@ -15,9 +15,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * @Author zsl
- * @Date 2022/5/15 19:21
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 19:21
+ * email 249269610@qq.com
  */
 public class JsonUtil {
     private static final ObjectMapper objectMapper = new ObjectMapper();

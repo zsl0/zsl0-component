@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 /**
  * 拒绝经过全局统一处理注解
  *
- * @Author zsl
- * @Date 2022/5/15 19:17
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 19:17
+ * email 249269610@qq.com
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

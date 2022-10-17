@@ -16,9 +16,9 @@ import java.util.Objects;
  * 全局统一返回异常日志处理
  *  出现异常时，返回ResponseResult进行捕捉,设置AccessLogContext响应码
  *
- * @Author zsl
- * @Date 2022/5/15 19:10
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/15 19:10
+ * email 249269610@qq.com
  */
 @ControllerAdvice
 @Order(Integer.MAX_VALUE - 20)

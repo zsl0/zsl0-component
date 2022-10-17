@@ -5,9 +5,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.Objects;
 
 /**
- * @Author zsl
- * @Date 2022/6/6 14:58
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/6 14:58
+ * email 249269610@qq.com
  */
 @ConfigurationProperties(prefix = "security.admin")
 public class SecurityAdminConfigurationProperties {

@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * todo 查询角色及拥有菜单权限
  *
- * @Author zsl
- * @Date 2022/6/10 17:21
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/10 17:21
+ * email 249269610@qq.com
  */
 public interface RoleService {
 

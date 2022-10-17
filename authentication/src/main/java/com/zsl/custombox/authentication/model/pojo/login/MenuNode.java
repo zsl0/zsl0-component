@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author zsl
- * @Date 2022/6/10 11:04
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/6/10 11:04
+ * email 249269610@qq.com
  */
 public class MenuNode {
     private Long menuId;

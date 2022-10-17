@@ -9,9 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 操作日志上下文
  *
- * @Author zsl
- * @Date 2022/5/25 21:13
- * @Email 249269610@qq.com
+ * @author zsl0
+ * create on 2022/5/25 21:13
+ * email 249269610@qq.com
  */
 public class LogRecordContext {
     private static final InheritableThreadLocal<Stack<Map<String, Object>>> variableMapStack = new InheritableThreadLocal<>();
