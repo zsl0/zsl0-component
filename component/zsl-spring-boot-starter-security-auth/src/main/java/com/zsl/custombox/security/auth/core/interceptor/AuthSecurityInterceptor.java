@@ -2,13 +2,10 @@ package com.zsl.custombox.security.auth.core.interceptor;
 
 import com.zsl.custombox.common.core.exception.GlobalException;
 import com.zsl.custombox.common.core.service.cache.TokenServer;
-import com.zsl.custombox.common.util.HttpUtil;
+import com.zsl.custombox.common.util.*;
 import com.zsl.custombox.security.auth.core.annotation.RequireAuthentication;
 import com.zsl.custombox.security.auth.core.annotation.Permissions;
 import com.zsl.custombox.security.auth.core.model.DefaultUserDetails;
-import com.zsl.custombox.common.util.JsonUtil;
-import com.zsl.custombox.common.util.SecurityContextHolder;
-import com.zsl.custombox.common.util.TokenUtil;
 import com.zsl.custombox.security.auth.core.model.PermissionService;
 import lombok.Setter;
 import org.springframework.web.method.HandlerMethod;
@@ -66,6 +63,7 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
         String permission = methodAnnotation.value();
 
         // 检查权限 需要自定义实现permissionService
+        if (Objects.isNull(permissionService)) permissionService = ApplicationUtil.getBean(PermissionService.class);
         if (!permissionService.hasPermission(permission)) throw new GlobalException(FORBIDDEN);
     }
 
@@ -103,6 +101,7 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
             // 解析uuid
             if (Objects.nonNull(uuid)) {
                 // todo redis缓存内容是否加密
+                if (Objects.isNull(tokenServer)) tokenServer = ApplicationUtil.getBean(TokenServer.class);
                 com.zsl.custombox.common.model.authentication.Authentication authentication = JsonUtil.getJsonObject(tokenServer.get(uuid), DefaultUserDetails.class);
                 userId = (authentication == null || authentication.getUserId() == null) ? null : authentication.getUserId().toString();
 

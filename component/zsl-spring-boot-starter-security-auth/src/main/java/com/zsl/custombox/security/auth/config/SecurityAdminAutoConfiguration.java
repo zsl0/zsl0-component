@@ -41,10 +41,7 @@ public class SecurityAdminAutoConfiguration implements WebMvcConfigurer {
 
     @Bean
     public AuthSecurityInterceptor authSecurityInterceptor() {
-        AuthSecurityInterceptor authSecurityInterceptor = new AuthSecurityInterceptor();
-        authSecurityInterceptor.setTokenServer(this.tokenServer());
-        authSecurityInterceptor.setPermissionService(this.permissionService());
-        return authSecurityInterceptor;
+        return new AuthSecurityInterceptor();
     }
 
     @Override

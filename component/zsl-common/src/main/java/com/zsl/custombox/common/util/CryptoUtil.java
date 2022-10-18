@@ -100,13 +100,13 @@ public class CryptoUtil {
     }
 
     public static void main(String[] args) {
-        String content = "Aa123456";
+        String content = "Zsl990126.";
         // 对明文进行加密
         System.out.println("encode: " + new String(CryptoUtil.encode(content.getBytes())));
         // 对明文进行加密并转base64编码
         System.out.println("encode2Base64: " + CryptoUtil.encode2Base64(content));
 
-        String secret = "ZGrslVixu6J9MDabxt076g==";
+        String secret = "Mq9muBbwXts=";
         // Base64密文解密
         System.out.println("decodeBase64: " + CryptoUtil.decodeBase64(secret));
     }

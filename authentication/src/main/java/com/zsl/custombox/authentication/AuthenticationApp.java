@@ -2,8 +2,6 @@ package com.zsl.custombox.authentication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import springfox.documentation.spring.web.plugins.Docket;
 
 /**
  * @author zsl0

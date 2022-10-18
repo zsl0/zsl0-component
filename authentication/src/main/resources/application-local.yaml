@@ -7,4 +7,19 @@ swagger:
 
 logging:
   level:
-    com.zsl.custombox.authentication.mapper: debug
+    com.zsl0: debug
+    com.zsl: debug
+
+# 数据源配置
+datasource:
+  hikari:
+    username: root
+    password: /e+ZDNwn1r58XyFfGWyXWQ==
+    jdbc-url: jdbc:mysql://home.zsl0.com:3306/zsl0?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+spring:
+  redis:
+    host: home.zsl0.com
+    port: 6379
+    password: 123456

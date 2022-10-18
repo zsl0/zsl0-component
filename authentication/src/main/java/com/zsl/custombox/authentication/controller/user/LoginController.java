@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 登录
@@ -31,7 +32,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user/login")
-@Api(value = "登录模块", tags = "登录模块")
+@Api(tags = "登录模块")
 public class LoginController {
 
     @Autowired
@@ -49,13 +50,13 @@ public class LoginController {
         DefaultUserDetails defaultUserDetails = userDetailsService.loadUserByUsername(usernamePasswordLoginParam.getUsername());
 
         // 生成Token
-        String accessToken = TokenUtil.createAccessToken();
-        String accessTokenUuid = TokenUtil.getAccessTokenUuid(accessToken);
-        defaultUserDetails.setUuid(accessTokenUuid);
+        String uuid = UUID.randomUUID().toString();
+        String accessToken = TokenUtil.createAccessToken(uuid);
+        defaultUserDetails.setUuid(uuid);
         SecurityContextHolder.setAuth(defaultUserDetails);
 
         // 缓存用户信息
-        tokenServer.set(accessTokenUuid, JsonUtil.obj2Str(defaultUserDetails));
+        tokenServer.set(uuid, JsonUtil.obj2Str(defaultUserDetails));
 
         List<MenuNode> menuNodes;
         // 查询菜单
