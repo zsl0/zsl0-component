@@ -15,11 +15,17 @@ import java.lang.reflect.Method;
  * create on 2022/5/25 21:57
  * email 249269610@qq.com
  */
-@AllArgsConstructor
-@NoArgsConstructor
 public class LogRecordValueParser {
     private LogRecordExpressionEvaluator expressionEvaluator;
     private IFunctionService functionService;
+
+    public LogRecordValueParser() {
+    }
+
+    public LogRecordValueParser(LogRecordExpressionEvaluator expressionEvaluator, IFunctionService functionService) {
+        this.expressionEvaluator = expressionEvaluator;
+        this.functionService = functionService;
+    }
 
     /**
      * 创建评估上下文，提供给ExpressionParser解析Expression使用

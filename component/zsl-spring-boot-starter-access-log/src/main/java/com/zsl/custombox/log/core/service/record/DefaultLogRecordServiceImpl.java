@@ -17,4 +17,9 @@ public class DefaultLogRecordServiceImpl implements ILogRecordService {
         // 默认使用日志记录 todo 自实现记录方式
         log.info(logRecord);
     }
+
+    @Override
+    public Long getUserId() {
+        return 0l;
+    }
 }

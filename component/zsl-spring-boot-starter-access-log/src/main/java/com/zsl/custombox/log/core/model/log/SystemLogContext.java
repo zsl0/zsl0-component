@@ -1,4 +1,4 @@
-package com.zsl.custombox.common.model.log;
+package com.zsl.custombox.log.core.model.log;
 
 import java.util.Date;
 

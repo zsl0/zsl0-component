@@ -3,13 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>component</artifactId>
-        <groupId>com.zsl0</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.zsl0</groupId>
     <artifactId>zsl-spring-boot-starter-log</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <jdk.version>8</jdk.version>
+        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+        <org.projectlombok.version>1.18.24</org.projectlombok.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -30,5 +38,62 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--            编译-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${jdk.version}</source> <!-- depending on your project -->
+                    <target>${jdk.version}</target> <!-- depending on your project -->
+                </configuration>
+            </plugin>
+
+            <!--            跳过测试-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <!--配置生成源码包-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <!-- 设置deploy的地址 -->
+    <distributionManagement>
+        <repository>
+            <id>zsl0-release</id>                    <!--库的ID-->
+            <name>user release resp</name>   <!--库的名字-->
+            <url>http://home.zsl0.com:8081/repository/maven-releases/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>zsl0-snapshots</id>
+            <name>user snapshot</name>
+            <url>http://home.zsl0.com:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 
 </project>

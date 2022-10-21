@@ -1,13 +1,12 @@
 package com.zsl.custombox.log.core.interceptor;
 
-import com.zsl.custombox.common.util.ApplicationUtil;
-import com.zsl.custombox.common.util.SecurityContextHolder;
-import com.zsl.custombox.common.util.ServletUtil;
-import com.zsl.custombox.common.model.log.SystemLogContext;
-import com.zsl.custombox.common.util.SystemLogContextHolder;
+import com.zsl.custombox.log.core.model.log.SystemLogContext;
 import com.zsl.custombox.log.core.service.record.ILogRecordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,25 +26,33 @@ import java.util.Objects;
  * create on 2022/5/22 14:55
  * email 249269610@qq.com
  */
-public class AccessLogInterceptor implements HandlerInterceptor {
+public class AccessLogInterceptor implements HandlerInterceptor, ApplicationContextAware {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * 全局日志上下文
+     */
+    private static final ThreadLocal<SystemLogContext> SYSTEM_LOG_CONTEXT = new ThreadLocal<>();
+
     ILogRecordService  logRecordService;
+
+    ApplicationContext applicationContext;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 创建全局日志记录上下文 todo 获取数据(实现工具类)
+        if (Objects.isNull(logRecordService)) logRecordService = applicationContext.getBean(ILogRecordService.class);
 
+        // 创建全局日志记录上下文 todo 获取数据(实现工具类)
         SystemLogContext systemLogContext = new SystemLogContext()
-                .setUserId(SecurityContextHolder.getAuth().getUserId())
+                .setUserId(logRecordService.getUserId())
                 .setRequestNo(0L)// 可以使用雪花算法获取64位唯一id
-                .setHost(ServletUtil.getIp())
+                .setHost(request.getHeader("host"))
                 .setUri(request.getRequestURI())
                 .setMethod(request.getMethod())
                 .setStartTime(new Date(System.currentTimeMillis()));
         // 存储全局日志记录上下文
-        SystemLogContextHolder.set(systemLogContext);
+        set(systemLogContext);
         return true;
     }
 
@@ -56,7 +63,7 @@ public class AccessLogInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        SystemLogContext systemLogContext = SystemLogContextHolder.get();
+        SystemLogContext systemLogContext = get();
         systemLogContext.setRespTime(System.currentTimeMillis() - systemLogContext.getStartTime().getTime());
 
         // format log
@@ -64,18 +71,18 @@ public class AccessLogInterceptor implements HandlerInterceptor {
         List<Object> requestArgs = new ArrayList<>();
         printLine(requestStr, requestArgs);
 
-        if (Objects.isNull(logRecordService)) logRecordService = ApplicationUtil.getBean(ILogRecordService.class);
+        if (Objects.isNull(logRecordService)) logRecordService = applicationContext.getBean(ILogRecordService.class);
         logRecordService.record(String.format(requestStr.toString(), requestArgs.toArray()));
 
         // 清理ThreadLocal
-        SystemLogContextHolder.clear();
+        clear();
     }
 
     /**
      * 多行输出
      */
     private void printLines(StringBuilder requestStr, List<Object> requestArgs) {
-        SystemLogContext systemLogContext = SystemLogContextHolder.get();
+        SystemLogContext systemLogContext = get();
 
         requestStr.append("\n=========================== AccessLog ===========================\n");
         requestStr.append(String.format("       %-10s: {}\n", "userId"));
@@ -103,26 +110,43 @@ public class AccessLogInterceptor implements HandlerInterceptor {
      * 单行输出
      */
     private void printLine(StringBuilder requestStr, List<Object> requestArgs) {
-        SystemLogContext systemLogContext = SystemLogContextHolder.get();
+        SystemLogContext systemLogContext = get();
 
         requestStr.append("[AccessLog] ");
-        requestStr.append(String.format("%s: {}, ", "userId"));
+        requestStr.append("userId: %s, ");
         requestArgs.add(systemLogContext.getUserId());
-        requestStr.append(String.format("%s: {}, ", "requestNo"));
+        requestStr.append("requestNo: %s, ");
         requestArgs.add(systemLogContext.getRequestNo());
-        requestStr.append(String.format("%s: {}, ", "host"));
+        requestStr.append("host: %s, ");
         requestArgs.add(systemLogContext.getHost());
-        requestStr.append(String.format("%s: {}, ", "uri"));
+        requestStr.append("uri: %s, ");
         requestArgs.add(systemLogContext.getUri());
-        requestStr.append(String.format("%s: {}, ", "method"));
+        requestStr.append("method: %s, ");
         requestArgs.add(systemLogContext.getMethod());
-        requestStr.append(String.format("%s: {}, ", "startTime"));
+        requestStr.append("startTime: %s, ");
         requestArgs.add(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(systemLogContext.getStartTime()));
-        requestStr.append(String.format("%s: {} ms, ", "respTime"));
+        requestStr.append("respTime: %s ms, ");
         requestArgs.add(systemLogContext.getRespTime());
-        requestStr.append(String.format("%s: {}, ", "respCode"));
+        requestStr.append("respCode: %s, ");
         requestArgs.add(systemLogContext.getRespCode());
-        requestStr.append(String.format("%s: {}", "respMsg"));
+        requestStr.append("respMsg: %s");
         requestArgs.add(systemLogContext.getRespMsg());
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    public static SystemLogContext get() {
+        return SYSTEM_LOG_CONTEXT.get();
+    }
+
+    public static void set(SystemLogContext systemLogContext) {
+        SYSTEM_LOG_CONTEXT.set(systemLogContext);
+    }
+
+    public static void clear() {
+        SYSTEM_LOG_CONTEXT.remove();
     }
 }
