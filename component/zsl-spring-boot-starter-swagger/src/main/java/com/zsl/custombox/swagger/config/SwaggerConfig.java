@@ -1,6 +1,5 @@
 package com.zsl.custombox.swagger.config;
 
-import cn.hutool.core.util.ObjectUtil;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,10 +14,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
  * swagger配置
+ *
+ * swagger:
+ *  enable: true
+ *  controllerBasePackage: com.zsl0.xxx.xxx.controller (controller包路径)
+ *  applicationName: xxx项目API文档
+ *  applicationVersion: V0.0.1
+ *  applicationDescription: 功能描述
  *
  * @author zsl0
  * create on 2022/5/15 17:45
@@ -35,20 +42,23 @@ public class SwaggerConfig {
 
     @Bean
     public Docket petApi() {
+        // 检查参数
+        checkParams(swaggerProperties);
+
         return new Docket(DocumentationType.SWAGGER_2)
 
                 // api文档信息
                 .apiInfo(apiInfo())
 
                 // 分组名称
-                .groupName(ObjectUtil.defaultIfNull(swaggerProperties.getApplicationVersion(), "-"))
+                .groupName(swaggerProperties.getApplicationVersion())
 
                 // 定义是否开启swagger,false为关闭，可以通过yaml配置变量控制
                 .enable(swaggerProperties.getEnable())
 
                 // 选择那些接口作为swagger的doc发布
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.zsl.custombox.authentication.controller"))    // api路径
+                .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getControllerBasePackage()))    // api路径
                 .paths(PathSelectors.any()) // 路径匹配
                 .build()
 
@@ -59,14 +69,29 @@ public class SwaggerConfig {
                 .securitySchemes(apiKeys());
     }
 
+    private void checkParams(SwaggerConfigurationProperties swaggerProperties) {
+        if (Objects.isNull(swaggerProperties.getTryHost())) swaggerProperties.setTryHost("-");
+
+        if (Objects.isNull(swaggerProperties.getControllerBasePackage()))
+            throw new IllegalArgumentException("swagger controller basePackage don't null! Please use yaml configuration swagger.controllerBasePackage");
+
+        if (Objects.isNull(swaggerProperties.getEnable())) swaggerProperties.setEnable(false);
+
+        if (Objects.isNull(swaggerProperties.getApplicationVersion())) swaggerProperties.setApplicationVersion("default-version");
+
+        if (Objects.isNull(swaggerProperties.getApplicationDescription())) swaggerProperties.setApplicationDescription("-");
+
+        if (Objects.isNull(swaggerProperties.getApplicationName())) swaggerProperties.setApplicationName("swagger API文档");
+    }
+
     /**
      * API 页面上半部分展示信息
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(ObjectUtil.defaultIfNull(swaggerProperties.getApplicationName(), "swagger API文档"))
-                .description(ObjectUtil.defaultIfNull(swaggerProperties.getApplicationDescription(), "API文档"))
-                .version("Application Version: " + ObjectUtil.defaultIfNull(swaggerProperties.getApplicationVersion(), "-"))
+                .title(swaggerProperties.getApplicationName())
+                .description(swaggerProperties.getApplicationDescription())
+                .version("Application Version: " + swaggerProperties.getApplicationVersion())
                 .build();
     }
 

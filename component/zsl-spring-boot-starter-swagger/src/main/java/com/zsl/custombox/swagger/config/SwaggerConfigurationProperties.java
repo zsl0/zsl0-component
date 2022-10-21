@@ -17,6 +17,8 @@ public class SwaggerConfigurationProperties {
     private String applicationDescription;  // 应用程序描述
     private String tryHost; //  接口调试地址
 
+    private String controllerBasePackage;   // controller扫描包
+
     public Boolean getEnable() {
         return enable;
     }
@@ -55,5 +57,13 @@ public class SwaggerConfigurationProperties {
 
     public void setTryHost(String tryHost) {
         this.tryHost = tryHost;
+    }
+
+    public String getControllerBasePackage() {
+        return controllerBasePackage;
+    }
+
+    public void setControllerBasePackage(String controllerBasePackage) {
+        this.controllerBasePackage = controllerBasePackage;
     }
 }

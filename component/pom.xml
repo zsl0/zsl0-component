@@ -16,7 +16,6 @@
         <module>zsl-spring-boot-starter-log</module>
         <module>zsl-common</module>
         <module>zsl-spring-boot-starter-security-auth</module>
-        <module>zsl-spring-boot-starter-swagger</module>
     </modules>
     <name>component</name>
 
@@ -54,6 +53,22 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <!-- 设置deploy的地址 -->
+    <distributionManagement>
+        <repository>
+            <id>zsl0-release</id>                    <!--库的ID-->
+            <name>user release resp</name>   <!--库的名字-->
+            <url>http://home.zsl0.com:8081/repository/maven-releases/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>zsl0-snapshots</id>
+            <name>user snapshot</name>
+            <url>http://home.zsl0.com:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 
 </project>

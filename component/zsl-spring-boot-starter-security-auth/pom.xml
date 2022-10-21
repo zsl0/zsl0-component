@@ -27,11 +27,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>zsl-spring-boot-starter-security-auth</finalName>
-    </build>
 
 </project>
