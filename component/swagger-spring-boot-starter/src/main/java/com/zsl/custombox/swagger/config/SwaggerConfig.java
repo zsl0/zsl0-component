@@ -22,10 +22,10 @@ import java.util.Objects;
  *
  * swagger:
  *  enable: true
- *  controllerBasePackage: com.zsl0.xxx.xxx.controller (controller包路径)
- *  applicationName: xxx项目API文档
- *  applicationVersion: V0.0.1
- *  applicationDescription: 功能描述
+ *  controller-base-package: com.zsl0.xxx.xxx.controller (controller包路径)
+ *  application-name: xxx项目API文档
+ *  application-version: V0.0.1
+ *  application-description: 功能描述
  *
  * @author zsl0
  * create on 2022/5/15 17:45
