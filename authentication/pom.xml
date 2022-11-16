@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>zsl0-parent</artifactId>
+        <artifactId>zsl0-component</artifactId>
         <groupId>com.zsl0</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -45,7 +45,7 @@
         <!--        API文档组件-->
         <dependency>
             <groupId>com.zsl0</groupId>
-            <artifactId>zsl-spring-boot-starter-swagger</artifactId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

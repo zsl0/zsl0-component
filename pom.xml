@@ -15,7 +15,7 @@
     </parent>
 
     <groupId>com.zsl0</groupId>
-    <artifactId>zsl0-parent</artifactId>
+    <artifactId>zsl0-component</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>custom_box</name>
     <description>
