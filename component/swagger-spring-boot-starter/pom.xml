@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zsl0</groupId>
-    <artifactId>zsl0-starter-swagger</artifactId>
+    <artifactId>swagger-spring-boot-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
