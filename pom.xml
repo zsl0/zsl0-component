@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>authentication</module>
+        <module>auth-test</module>
     </modules>
 
     <parent>

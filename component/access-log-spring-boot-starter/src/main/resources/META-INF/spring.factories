@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.zsl.custombox.log.config.AccessLogAutoConfiguration
