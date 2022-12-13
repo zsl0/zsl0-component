@@ -2,6 +2,7 @@ package com.zsl0.auth.config;
 
 import com.zsl0.component.auth.core.model.PermissionProvide;
 import com.zsl0.component.auth.core.util.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * @author zsl0
  * created on 2022/12/12 22:47
  */
-//@Component
+@Component
 public class MyPermissionProvider implements PermissionProvide {
     @Override
     public boolean hasPermission(String requirePermission) {

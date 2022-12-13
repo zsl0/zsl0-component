@@ -9,12 +9,14 @@ import java.util.Objects;
  */
 public class HttpUtil {
 
+    public static String HEAD = "Authentication-zsl0";
+
     /**
      * 获取请求头中存储token
      */
     public static String authentication(HttpServletRequest request) {
         String token = null;
-        String head = request.getHeader("Authentication-zsl0");
+        String head = request.getHeader(HEAD);
         if (Objects.nonNull(head) && head.startsWith("Bearer ")) {
             token = head.replace("Bearer ", "").trim();
         }

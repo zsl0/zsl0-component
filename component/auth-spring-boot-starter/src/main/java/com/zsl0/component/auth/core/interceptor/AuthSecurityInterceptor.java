@@ -10,6 +10,7 @@ import com.zsl0.component.auth.core.exception.authentication.NotAuthorizationExc
 import com.zsl0.component.auth.core.model.PermissionProvide;
 import com.zsl0.component.auth.core.util.HttpUtil;
 import com.zsl0.component.auth.core.util.JwtUtil;
+import com.zsl0.component.auth.core.util.TokenUtil;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -66,8 +67,13 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
             return;
         }
 
+        if (Objects.isNull(userId)) {
+            throw new NotAuthenticationException();
+        }
+
         Permissions methodAnnotation = handler.getMethodAnnotation(Permissions.class);
         if (Objects.isNull(methodAnnotation)) {
+            // todo 记录获取方法注解失败 按理上面判断存在注解，此时不为空
             return;
         }
         String permission = methodAnnotation.value();
@@ -106,13 +112,13 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
         }
 
         // 检查token是否过期
-        if (JwtUtil.isExpire(token)) {
+        if (TokenUtil.isExpire(token)) {
             throw new TokenExpireException("token has expired");
         }
 
         // 根据token获取uuid、permissions
-        String userId = JwtUtil.getUuid(token);
-        List<String> permissions = JwtUtil.getPermissions(token);
+        String userId = TokenUtil.getUuid(token);
+        List<String> permissions = TokenUtil.getPermissions(token);
 
         // 将凭证放入全局结构体中
         SecurityContextHolder.setAuth(AuthInfo.builder()

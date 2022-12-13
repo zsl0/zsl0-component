@@ -1,8 +1,11 @@
 package com.zsl0.auth.controller;
 
+import com.zsl0.component.auth.config.SecurityAdminConfigurationProperties;
 import com.zsl0.component.auth.core.annotation.Permissions;
 import com.zsl0.component.auth.core.annotation.RequireAuthentication;
 import com.zsl0.component.auth.core.util.JwtUtil;
+import com.zsl0.component.auth.core.util.TokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +26,7 @@ public class LoginController {
         List<String> permissions = new ArrayList<>();
         permissions.add("admin");
         permissions.add("system");
-        String access_token = JwtUtil.generateToken("access_token", new Date(2022, Calendar.DECEMBER, 13, 12, 0), "1", permissions);
+        String access_token = TokenUtil.generateToken("access_token", new Date(2022, Calendar.DECEMBER, 13, 12, 0), "1", permissions);
         return "token=" + access_token;
     }
 

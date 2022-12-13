@@ -1,6 +1,6 @@
 package com.zsl0.component.auth.core.exception.authentication;
 
-import com.zsl0.component.auth.core.exception.base.CustomException;
+import com.zsl0.component.auth.core.exception.base.AuthCustomException;
 
 /**
  * 未认证异常
@@ -8,7 +8,7 @@ import com.zsl0.component.auth.core.exception.base.CustomException;
  * @author zsl0
  * created on 2022/12/12 21:57
  */
-public class NotAuthenticationException extends CustomException {
+public class NotAuthenticationException extends AuthCustomException {
     public NotAuthenticationException() {
     }
 

@@ -1,8 +1,12 @@
 package com.zsl0.component.auth.core.util;
 
-import cn.hutool.core.date.DateUtil;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.interfaces.Claim;
+import com.zsl0.component.auth.config.SecurityAdminConfigurationProperties;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author zsl0
@@ -10,84 +14,104 @@ import java.util.Date;
  */
 public class TokenUtil {
 
-//    // todo 参数需要初始化
-//    // 访问Token过期分钟
-//    public static Integer ACCESS_TOKEN_MINUTE_EXPIRE = 3 * 24 * 60;
-//    // 刷新Token过期分钟
-//    public static Integer REFRESH_TOKEN_MINUTE_EXPIRE = 3 * 24 * 60;
-//
-//    /**
-//     * 创建唯一Token, 凭借Payload中uuid作为当前用户的唯一凭证，与用户进行绑定
-//     */
-//    public static String createAccessToken(String uuid) {
-//        Date expire = DateUtil.offsetMinute(new Date(), ACCESS_TOKEN_MINUTE_EXPIRE);
-//        // 使用 uuid 作为 键值
-//        return JwtUtil.generateToken("access_token", expire, uuid);
-//    }
-//
-//    /**
-//     * 创建唯一Token, 凭借Payload中uuid作为当前用户的唯一凭证，与用户进行绑定
-//     */
-//    public static String createAccessToken(String uuid, String authenticationJson) {
-//        Date expire = DateUtil.offsetMinute(new Date(), ACCESS_TOKEN_MINUTE_EXPIRE);
-//        // 使用 uuid 作为 键值
-//        return JwtUtil.generateToken("access_token", expire, uuid, authenticationJson);
-//    }
-//
-//
-//    public static String createRefreshToken(String uuid) {
-//        Date expire = DateUtil.offsetMinute(new Date(), REFRESH_TOKEN_MINUTE_EXPIRE);
-//        // 使用 uuid 作为 键值
-//        return JwtUtil.generateToken("refresh_token", expire, uuid);
-//    }
-//
-//    /**
-//     * 获取access_token存储uuid
-//     */
-//    public static String getAccessTokenUuid(String token) {
-//        String subject = JwtUtil.getTokenInfo(token, "sub");
-//        if (subject == null || !"access_token".equals(subject)) {
-//            throw new NotAccessTokenException("token认证失败，不是access_token!");
-//        }
-//        return JwtUtil.getTokenInfo(token, "uuid");
-//    }
-//
-//    /**
-//     * 获取access_token存储Authentication信息
-//     */
-//    public static String getAccessTokenAuthentication(String token) {
-//        String subject = JwtUtil.getTokenInfo(token, "sub");
-//        if (!"access_token".equals(subject)) {
-//            throw new NotAccessTokenException("token认证失败，不是access_token!");
-//        }
-//
-//        return JwtUtil.getTokenInfo(token, "Authentication");
-//    }
-//
-//    /**
-//     * 获取refresh_token存储uuid
-//     */
-//    public static String getRefreshTokenUuid(String token) {
-//        String subject = JwtUtil.getTokenInfo(token, "sub");
-//        if (!"refresh_token".equals(subject)) {
-//            throw new NotAccessTokenException("token认证失败，refresh_token!");
-//        }
-//        return JwtUtil.getTokenInfo(token, "uuid");
-//    }
-//
-//    /**
-//     * 是否过期
-//     */
-//    public static boolean isExpire(String token) {
-//        Long expire = getExpire(token);
-//        return expire == null || expire < System.currentTimeMillis();
-//    }
-//
-//    /**
-//     * 获取过期时间
-//     */
-//    public static Long getExpire(String token) {
-//        return JwtUtil.getExpire(token);
-//    }
+    /**
+     * 用户凭证key todo 静态参数提供动态获取
+     */
+    public static String CERTIFICATE_KEY = "UUID";
+
+    /**
+     * 许可key
+     */
+    public static String PERMISSIONS_KEY = "PERMISSIONS";
+
+    /**
+     * 发行人
+     */
+    public static String ISSUER = "zsl0";
+
+    /**
+     * 密钥
+     */
+    public static String SECRET = "zsl0:abc123456";
+
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("admin");
+        list.add("system");
+        String token = generateToken("123", new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24), "1", list);
+        System.out.println(token);
+    }
+
+    /**
+     * 生成token
+     */
+    public static String generateToken(String subject, Date expire, String uuid) {
+        String token = null;
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(SECRET);
+            token = JWT.create()
+                    .withIssuer(ISSUER)
+                    .withClaim(CERTIFICATE_KEY, uuid)
+                    .withSubject(subject)
+                    .withExpiresAt(expire)
+                    .sign(algorithm);
+        } catch (JWTCreationException exception) {
+            //Invalid Signing configuration / Couldn't convert Claims.
+        }
+        return token;
+    }
+
+    /**
+     * 生成token
+     * @param subject 主题
+     * @param expire 过期时间
+     * @param permissions 认证信息json字符串
+     * @return
+     */
+    public static String generateToken(String subject, Date expire, String uuid, List<String> permissions) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(CERTIFICATE_KEY, uuid);
+        claims.put(PERMISSIONS_KEY, permissions);
+
+        return JwtUtil.generate(SECRET,
+                ISSUER,
+                subject,
+                expire,
+                claims);
+    }
+
+    /**
+     * 获取用户唯一凭证
+     */
+    public static String getUuid(String token) {
+        return JwtUtil.getClaim(token,
+                CERTIFICATE_KEY,
+                SECRET,
+                ISSUER);
+    }
+
+    /**
+     * 获取权限
+     */
+    public static List<String> getPermissions(String token) {
+        Map<String, Claim> claims = JwtUtil.getClaims(token, SECRET, ISSUER);
+        return claims.get(PERMISSIONS_KEY).asList(String.class);
+    }
+
+
+    /**
+     * 是否过期
+     */
+    public static boolean isExpire(String token) {
+        Long expire = getExpire(token);
+        return expire < System.currentTimeMillis();
+    }
+
+    /**
+     * 获取过期时间
+     */
+    public static Long getExpire(String token) {
+        return JwtUtil.getExpire(token, SECRET, ISSUER);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.zsl0.component.auth.core.util;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
@@ -8,11 +9,10 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.zsl0.component.auth.core.exception.token.TokenGenerateException;
+import com.zsl0.component.auth.core.exception.token.TokenUnknownException;
 import com.zsl0.component.auth.core.exception.token.TokenVerifyFailedException;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author zsl0
@@ -20,125 +20,82 @@ import java.util.Map;
  */
 public class JwtUtil {
 
-    // todo 参数需要初始化
-    // 密钥
-    public static String secret = "pacx:zsl:secret:123456789abc";
-    // 发行人
-    public static String issuer = "zsl0";
-
     /**
-     * 用户凭证key
-     */
-    public static final String CERTIFICATE_KEY = "UUID";
-
-    public static final String PERMISSIONS_KEY = "PERMISSIONS";
-
-    /**
-     * 生成token
-     */
-    public static String generateToken(String subject, Date expire, String uuid) {
-        String token = null;
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            token = JWT.create()
-                    .withIssuer(issuer)
-                    .withClaim(CERTIFICATE_KEY, uuid)
-                    .withSubject(subject)
-                    .withExpiresAt(expire)
-                    .sign(algorithm);
-        } catch (JWTCreationException exception) {
-            //Invalid Signing configuration / Couldn't convert Claims.
-        }
-        return token;
-    }
-
-    /**
-     * 生成token
-     * @param subject 主题
+     * 生成Java Web Token
+     * @param secret 盐
+     * @param issuer 发行人
+     * @param subject 标题
      * @param expire 过期时间
-     * @param permissions 认证信息json字符串
-     * @return
+     * @param claims 信息
+     * @return token
      */
-    public static String generateToken(String subject, Date expire, String uuid, List<String> permissions) {
+    public static String generate(String secret, String issuer, String subject, Date expire, Map<String, Object> claims) {
         String token = null;
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            token = JWT.create()
+            JWTCreator.Builder builder = JWT.create()
                     .withIssuer(issuer)
-                    .withClaim(CERTIFICATE_KEY, uuid)
-                    .withClaim(PERMISSIONS_KEY, permissions)
                     .withSubject(subject)
-                    .withExpiresAt(expire)
-                    .sign(algorithm);
+                    .withExpiresAt(expire);
+            for (Map.Entry<String, Object> entry : claims.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                if (value instanceof String) {
+                    builder.withClaim(key, (String) value);
+                } else if (value instanceof Boolean) {
+                    builder.withClaim(key, (Boolean) value);
+                } else if (value instanceof Integer) {
+                    builder.withClaim(key, (Integer) value);
+                } else if (value instanceof Double) {
+                    builder.withClaim(key, (Double) value);
+                } else if (value instanceof Long) {
+                    builder.withClaim(key, (Long) value);
+                } else if (value instanceof Date) {
+                    builder.withClaim(key, (Date) value);
+                } else if (value instanceof Map) {
+                    builder.withClaim(key, (Map) value);
+                } else if (value instanceof List) {
+                    builder.withClaim(key, (List) value);
+                } else {
+                    throw new TokenUnknownException();
+                }
+            }
+            token = builder.sign(algorithm);
         } catch (JWTCreationException exception) {
             //Invalid Signing configuration / Couldn't convert Claims.
             throw new TokenGenerateException(exception.getCause());
         }
         return token;
     }
-    /**
-     * 获取过期时间
-     */
-    public static Long getExpire(String token) {
-        DecodedJWT decodedJWT = verity(token);
-        return decodedJWT.getExpiresAt().getTime();
-    }
-
-    /**
-     * 是否过期
-     */
-    public static boolean isExpire(String token) {
-        Long expire = getExpire(token);
-        return expire < System.currentTimeMillis();
-    }
-
-
-    /**
-     * 获取token信息
-     * @param token token凭证
-     * @param key key值
-     */
-    public static String getTokenInfo(String token, String key) {
-        return getClaim(token, key);
-    }
-
-    /**
-     * 获取用户唯一凭证
-     */
-    public static String getUuid(String token) {
-        return getClaim(token, CERTIFICATE_KEY);
-    }
-
-    /**
-     * 获取权限
-     */
-    public static List<String> getPermissions(String token) {
-        Map<String, Claim> claims = getClaims(token);
-        return claims.get(PERMISSIONS_KEY).asList(String.class);
-    }
 
     /**
      * 获取Payload信息
      */
-    private static String getClaim(String token, String key) {
-        Map<String, Claim> claims = getClaims(token);
-//        return claims == null ? null : claims.get(key).asString();
+    public static String getClaim(String token, String key, String secret, String issuer) {
+        Map<String, Claim> claims = getClaims(token, secret, issuer);
         return claims.get(key).asString();
     }
 
     /**
      * 获取Payload信息
      */
-    private static Map<String, Claim> getClaims(String token) {
-        DecodedJWT decodedJWT = verity(token);
-//        return decodedJWT == null ? null : decodedJWT.getClaims();
+    public static Map<String, Claim> getClaims(String token, String secret, String issuer) {
+        DecodedJWT decodedJWT = verity(token, secret, issuer);
         return decodedJWT.getClaims();
+    }
+
+    /**
+     * 获取过期时间
+     */
+    public static Long getExpire(String token, String secret, String issuer) {
+        DecodedJWT decodedJWT = verity(token, secret, issuer);
+        return decodedJWT.getExpiresAt().getTime();
     }
 
     /**
      * 解析token
      */
-    private static DecodedJWT verity(String token) {
+    private static DecodedJWT verity(String token, String secret, String issuer) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         JWTVerifier verifier = null;
         try {

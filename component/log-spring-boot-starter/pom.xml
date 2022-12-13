@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zsl0</groupId>
-    <artifactId>access-log-spring-boot-starter</artifactId>
+    <artifactId>log-spring-boot-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

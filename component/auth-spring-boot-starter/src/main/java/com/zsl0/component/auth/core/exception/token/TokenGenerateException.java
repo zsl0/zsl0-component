@@ -1,12 +1,12 @@
 package com.zsl0.component.auth.core.exception.token;
 
-import com.zsl0.component.auth.core.exception.base.CustomException;
+import com.zsl0.component.auth.core.exception.base.AuthCustomException;
 
 /**
  * @author zsl0
  * created on 2022/12/12 21:20
  */
-public class TokenGenerateException extends CustomException {
+public class TokenGenerateException extends AuthCustomException {
 
     public TokenGenerateException() {
     }
