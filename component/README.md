@@ -1,16 +1,10 @@
-# Common
-Custom_box Common(自定义匣子-公共组件)
+# Component
+component (组件)
 
-描述：实现通用公共组件全局异常处理、统一消息返回、基类、Auth-starter(认证)、Swagger-starter(API文档)、LogRecord-starter(日志)、Utils
-
-### 架构
-Common在整个项目比重：
-todo 架构图
+描述：实现通用公共组件全局异常处理、统一消息返回、基类、Auth-starter(认证)、Swagger-starter(API文档)、LogRecord-starter(日志)
 
 ### 实现功能
-1. common-全局统一响应返回、全局异常处理、Util
-2. Auth-starter(待实现白名单)
-3. LogRecord-starter(待完善注解记录操作日志)
-
-### 未实现功能
-1. swagger-starter
+1. common：公共依赖，包含全局统一响应返回、全局异常处理
+2. auth-spring-boot-starter：认证starter，可支持ACL、RBAC功能
+3. log-spring-boot-starter：日志starter，访问日志、操作日志功能
+4. swagger-spring-boot-starter：Api文档starter

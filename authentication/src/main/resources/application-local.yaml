@@ -1,9 +1,17 @@
 # swagger配置
 swagger:
+  # 是否开启
   enable: true
+  # 应用程序名称
   application-name: 认证模块
+  # 应用程序版本
   application-version: v0.0.1
+  # 应用程序描述
   application-description: 功能：登录
+  # controller扫描包
+  controller-base-package: com.zsl0.demo.authentication
+  # 接口调试地址
+#  try-host:
 
 logging:
   level:

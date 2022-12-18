@@ -30,7 +30,7 @@
         <jwt.version>3.18.2</jwt.version>
         <org.mapstruct.vsersion>1.4.2.Final</org.mapstruct.vsersion>
         <springfox.version>3.0.0</springfox.version>
-        <cn.hutool.version>5.7.16</cn.hutool.version>
+        <cn.hutool.version>5.8.8</cn.hutool.version>
         <mybatis.version>2.2.0</mybatis.version>
     </properties>
 

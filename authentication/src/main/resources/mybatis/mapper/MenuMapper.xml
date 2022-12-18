@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zsl.custombox.authentication.mapper.MenuMapper">
+<mapper namespace="com.zsl0.demo.authentication.mapper.MenuMapper">
 
     <sql id="menuColumnsByArg">
         #{arg}.`id`,
@@ -18,20 +18,20 @@
         `update_time`
     </sql>
 
-    <select id="queryAll" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+    <select id="queryAll" resultType="com.zsl0.demo.authentication.model.pojo.login.Menu">
         select
         <include refid="menuColumns"/>
         from menu
     </select>
 
-    <select id="queryById" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+    <select id="queryById" resultType="com.zsl0.demo.authentication.model.pojo.login.Menu">
         select
         <include refid="menuColumns"/>
         from menu
         where id = #{id}
     </select>
 
-    <select id="queryByRoleId" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+    <select id="queryByRoleId" resultType="com.zsl0.demo.authentication.model.pojo.login.Menu">
         select
             <include refid="menuColumns"><property name="arg" value="t"/></include>
         from
@@ -40,7 +40,7 @@
         where m.id = t.menu_id
     </select>
 
-    <select id="queryByRoleIdes" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+    <select id="queryByRoleIdes" resultType="com.zsl0.demo.authentication.model.pojo.login.Menu">
         <foreach collection="list" item="roleId" separator="union all">
             select
             <include refid="menuColumns"><property name="arg" value="t"/></include>
@@ -56,7 +56,7 @@
 
     </resultMap>
 
-    <select id="queryByUserId" resultType="com.zsl.custombox.authentication.model.pojo.login.Menu">
+    <select id="queryByUserId" resultType="com.zsl0.demo.authentication.model.pojo.login.Menu">
 
     </select>
 

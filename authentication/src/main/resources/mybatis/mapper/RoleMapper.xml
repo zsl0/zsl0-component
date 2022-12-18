@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zsl.custombox.authentication.mapper.RoleMapper">
+<mapper namespace="com.zsl0.demo.authentication.mapper.RoleMapper">
 
     <sql id="roleColumns">
             `id`,
@@ -9,20 +9,20 @@
             `update_time`
     </sql>
 
-    <select id="queryAll" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+    <select id="queryAll" resultType="com.zsl0.demo.authentication.model.pojo.login.Role">
         select
             <include refid="roleColumns"/>
         from role
     </select>
 
-    <select id="queryById" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+    <select id="queryById" resultType="com.zsl0.demo.authentication.model.pojo.login.Role">
         select
             <include refid="roleColumns"/>
         from role
         where id = #{id}
     </select>
 
-    <select id="queryByMenuId" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+    <select id="queryByMenuId" resultType="com.zsl0.demo.authentication.model.pojo.login.Role">
         select
             <include refid="roleColumns"/>
         from
@@ -31,7 +31,7 @@
         where r.id = t.role_id
     </select>
 
-    <select id="queryByUserId" resultType="com.zsl.custombox.authentication.model.pojo.login.Role">
+    <select id="queryByUserId" resultType="com.zsl0.demo.authentication.model.pojo.login.Role">
         select
             <include refid="roleColumns"/>
         from

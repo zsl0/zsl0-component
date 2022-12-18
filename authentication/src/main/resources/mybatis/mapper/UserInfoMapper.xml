@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zsl.custombox.authentication.mapper.UserInfoMapper">
+<mapper namespace="com.zsl0.demo.authentication.mapper.UserInfoMapper">
     <sql id="userInfoColumns">
         `id`,
         `username`,
@@ -19,7 +19,7 @@
         `update_time`
     </sql>
 
-    <select id="queryAll" resultType="com.zsl.custombox.authentication.model.pojo.login.UserInfo">
+    <select id="queryAll" resultType="com.zsl0.demo.authentication.model.pojo.login.UserInfo">
         select
         <include refid="userInfoColumns"></include>
         from
@@ -27,7 +27,7 @@
     </select>
 
 
-    <select id="queryById" resultType="com.zsl.custombox.authentication.model.pojo.login.UserInfo">
+    <select id="queryById" resultType="com.zsl0.demo.authentication.model.pojo.login.UserInfo">
         select
         <include refid="userInfoColumns"></include>
         from
@@ -36,7 +36,7 @@
         id = #{id}
     </select>
 
-    <select id="queryByUsername" resultType="com.zsl.custombox.authentication.model.pojo.login.UserInfo">
+    <select id="queryByUsername" resultType="com.zsl0.demo.authentication.model.pojo.login.UserInfo">
         select
         <include refid="userInfoColumns"></include>
         from
@@ -45,7 +45,7 @@
         username = #{username}
     </select>
 
-    <select id="queryByEmail" resultType="com.zsl.custombox.authentication.model.pojo.login.UserInfo">
+    <select id="queryByEmail" resultType="com.zsl0.demo.authentication.model.pojo.login.UserInfo">
         select
         <include refid="userInfoColumns"></include>
         from
@@ -54,7 +54,7 @@
         email = #{email}
     </select>
 
-    <select id="queryByPhone" resultType="com.zsl.custombox.authentication.model.pojo.login.UserInfo">
+    <select id="queryByPhone" resultType="com.zsl0.demo.authentication.model.pojo.login.UserInfo">
         select
         <include refid="userInfoColumns"></include>
         from

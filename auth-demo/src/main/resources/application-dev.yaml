@@ -1,0 +1,30 @@
+# 认证组件配置
+security:
+  admin:
+    # 发行人
+    issuer: zsl0
+    # 请求头
+    request-head: Authentication
+    # 忽略路径
+    ignore-path: /api/login/*
+    # 用户凭证key
+    certificate-key:
+    # 权限存储key
+    permissions-key:
+    # 密钥
+    secret: secret:abc:zsl0
+
+# swagger组件配置
+swagger:
+  # 是否开启
+  enable: true
+  # 应用程序名称
+  application-name: 登陆模块
+  # 应用程序版本
+  application-version: v0.0.1
+  # 应用程序描述
+  application-description: 功能：登录案例，整合zsl0组件
+  # controller扫描包
+  controller-base-package: com.zsl0.auth.controller
+  # 接口调试地址
+#  try-host:

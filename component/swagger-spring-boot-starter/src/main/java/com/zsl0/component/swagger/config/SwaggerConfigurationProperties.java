@@ -11,13 +11,36 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "swagger")
 public class SwaggerConfigurationProperties {
-    private Boolean enable = true; // 是否开启swagger
-    private String applicationName; // 应用程序名称
-    private String applicationVersion;  // 应用程序版本
-    private String applicationDescription;  // 应用程序描述
-    private String tryHost; //  接口调试地址
 
-    private String controllerBasePackage;   // controller扫描包
+    /**
+     * 是否开启swagger
+     */
+    private Boolean enable = true;
+
+    /**
+     * 应用程序名称
+     */
+    private String applicationName;
+
+    /**
+     * 应用程序版本
+     */
+    private String applicationVersion;
+
+    /**
+     * 应用程序描述
+     */
+    private String applicationDescription;
+
+    /**
+     * 接口调试地址
+     */
+    private String tryHost;
+
+    /**
+     * controller扫描包
+     */
+    private String controllerBasePackage;
 
     public Boolean getEnable() {
         return enable;
