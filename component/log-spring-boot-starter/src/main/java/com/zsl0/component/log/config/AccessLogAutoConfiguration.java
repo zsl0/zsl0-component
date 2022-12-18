@@ -1,10 +1,12 @@
 package com.zsl0.component.log.config;
 
 import com.zsl0.component.log.core.interceptor.AccessLogInterceptor;
+import com.zsl0.component.log.core.model.logrecord.LogRecordOperationSource;
 import com.zsl0.component.log.core.service.record.DefaultLogRecordServiceImpl;
 import com.zsl0.component.log.core.service.record.ILogRecordService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * email 249269610@qq.com
  */
 @Configuration
+@ComponentScan("com.zsl0.component.log")
 public class AccessLogAutoConfiguration implements WebMvcConfigurer {
 
     // ==========================   拦截器   ==========================
@@ -30,9 +33,8 @@ public class AccessLogAutoConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(this.accessLogInterceptor());
     }
 
-    // 持久化
-
     /**
+     * 持久化
      * 需要自实现:
      *  1.日志存储方式
      *  2.获取用户id
@@ -42,5 +44,22 @@ public class AccessLogAutoConfiguration implements WebMvcConfigurer {
     public ILogRecordService logRecordService() {
         return new DefaultLogRecordServiceImpl();
     }
+
+    // 处理注解信息操作源
+    @Bean
+    public LogRecordOperationSource logRecordOperationSource () {
+        LogRecordOperationSource logRecordOperationSource = new LogRecordOperationSource();
+        return logRecordOperationSource;
+    }
+
+//    /**
+//     * 操作人
+//     * @return
+//     */
+//    @Bean
+//    @ConditionalOnMissingBean(IOperatorGetService.class)
+//    public IOperatorGetService operatorGetService() {
+//        return new DefaultOperatorGetServiceImpl();
+//    }
 
 }

@@ -1,11 +1,12 @@
-package com.zsl.custombox.log.core.aspect;
+package com.zsl0.component.log.core.aspect;
 
-import com.zsl.custombox.log.core.annotation.LogRecord;
-import com.zsl.custombox.log.core.model.MethodExceptionResult;
-import com.zsl.custombox.log.core.model.logrecord.LogRecordContext;
-import com.zsl.custombox.log.core.model.logrecord.LogRecordExpressionEvaluator;
-import com.zsl.custombox.log.core.model.logrecord.LogRecordValueParser;
-import com.zsl.custombox.log.core.service.record.ILogRecordService;
+import com.zsl0.component.log.core.annotation.LogRecord;
+import com.zsl0.component.log.core.model.MethodExceptionResult;
+import com.zsl0.component.log.core.model.logrecord.LogRecordContext;
+import com.zsl0.component.log.core.model.logrecord.LogRecordExpressionEvaluator;
+import com.zsl0.component.log.core.model.logrecord.LogRecordOperationSource;
+import com.zsl0.component.log.core.model.logrecord.LogRecordValueParser;
+import com.zsl0.component.log.core.service.record.ILogRecordService;
 import org.apache.logging.log4j.util.Strings;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.expression.AnnotatedElementKey;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.stereotype.Component;
 
@@ -33,9 +35,11 @@ public class LogRecordAspect {
     @Autowired
     ILogRecordService logRecordService;
 
+    LogRecordOperationSource operationSource = new LogRecordOperationSource();
+
     LogRecordValueParser logRecordValueParser = new LogRecordValueParser(new LogRecordExpressionEvaluator());
 
-    @Around("@annotation(com.zsl.custombox.log.core.annotation.LogRecord)")
+    @Around("@annotation(com.zsl0.component.log.core.annotation.LogRecord)")
     public Object logRecord(ProceedingJoinPoint point) throws Throwable {
         return execute(point, point.getTarget().getClass(), ((MethodSignature) point.getSignature()).getMethod(), point.getArgs());
     }
@@ -60,7 +64,7 @@ public class LogRecordAspect {
         } catch (Throwable throwable) {
             exceptionResult = new MethodExceptionResult(false, throwable, throwable.getMessage());
         }
-        // 解析List中SpEL
+
         try {
             // 存储日志
             if (Strings.isNotBlank(spEL)) {
@@ -85,17 +89,19 @@ public class LogRecordAspect {
 
         // 方法执行成功
         if (success) {
+            // 解析表达式
+            String springEL = operationSource.computeLogRecordOperation(method, targetClass);
             // 创建上下文
             EvaluationContext evaluationContext = logRecordValueParser.createEvaluationContext(method, args, ret, errorMsg);
             // 获取评估后expressionString
-            expression = logRecordValueParser.getExpression(spEL, new AnnotatedElementKey(method, targetClass), evaluationContext);
+            expression = logRecordValueParser.getExpression(springEL, new AnnotatedElementKey(method, targetClass), evaluationContext);
         } else {
             // 方法执行失败
             expression = String.format("方法执行失败，errorMessages=%s", errorMsg);
         }
 
         // 持久化操作日志
-        logRecordService.record(new com.zsl.custombox.log.core.model.logrecord.LogRecord(expression));
+        logRecordService.record(expression);
     }
 
     /**
@@ -109,7 +115,7 @@ public class LogRecordAspect {
      * 获取注解
      */
     private LogRecord getAnnotation(Method method) {
-        LogRecord annotation = method.getAnnotation(LogRecord.class);
+        LogRecord annotation = AnnotationUtils.getAnnotation(method, LogRecord.class);
         return annotation;
     }
 }

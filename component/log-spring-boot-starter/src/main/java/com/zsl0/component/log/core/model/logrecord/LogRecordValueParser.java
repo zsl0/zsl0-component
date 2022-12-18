@@ -1,4 +1,4 @@
-package com.zsl.custombox.log.core.model.logrecord;
+package com.zsl0.component.log.core.model.logrecord;
 
 import org.springframework.context.expression.AnnotatedElementKey;
 import org.springframework.core.DefaultParameterNameDiscoverer;

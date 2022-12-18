@@ -5,6 +5,7 @@ import com.zsl0.component.auth.core.annotation.Permissions;
 import com.zsl0.component.auth.core.annotation.RequireAuthentication;
 import com.zsl0.component.auth.core.util.JwtUtil;
 import com.zsl0.component.auth.core.util.TokenUtil;
+import com.zsl0.component.log.core.annotation.LogRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,12 +39,14 @@ public class LoginController {
 
     @GetMapping("admin")
     @Permissions("admin")
-    public String admin() {
+    @LogRecord(value = "admin修改账号#{username}", bizNo = "web")
+    public String admin(String username) {
         return "success";
     }
 
     @GetMapping("system")
     @Permissions("system")
+    @LogRecord(value = "system进行查询", bizNo = "web")
     public String system() {
         return "success";
     }

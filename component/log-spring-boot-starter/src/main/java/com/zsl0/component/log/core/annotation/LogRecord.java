@@ -1,4 +1,4 @@
-package com.zsl.custombox.log.core.annotation;
+package com.zsl0.component.log.core.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 
@@ -18,13 +18,13 @@ public @interface LogRecord {
      * content别名，操作日志默认模板内容
      * @return
      */
-    @AliasFor("content")
+    @AliasFor(attribute = "content")
     String value() default "";
 
     /**
      * 操作日志默认模板内容
      */
-    @AliasFor("value")
+    @AliasFor(attribute = "value")
     String content() default "";
 
     /**

@@ -1,4 +1,4 @@
-package com.zsl.custombox.log.core.service.operator;
+package com.zsl0.component.log.core.service.operator;
 
 /**
  * @author zsl0

@@ -2,3 +2,7 @@ security:
   admin:
     issuer: zsl0
     request-head: Authentication
+
+spring:
+  profiles:
+    active: dev

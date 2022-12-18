@@ -14,7 +14,7 @@ public class DefaultLogRecordServiceImpl implements ILogRecordService {
 
     @Override
     public void record(String logRecord) {
-        // 默认使用日志记录 todo 自实现记录方式
+        // 默认使用日志记录
         log.info(logRecord);
     }
 

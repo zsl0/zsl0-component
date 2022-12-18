@@ -1,4 +1,4 @@
-package com.zsl0.auth.config;
+package com.zsl0.auth.config.auth;
 
 import com.zsl0.component.auth.core.model.PermissionProvide;
 import com.zsl0.component.auth.core.util.SecurityContextHolder;
