@@ -1,6 +1,6 @@
 package com.zsl.custombox.authentication.service.cache.impl;
 
-import com.zsl.custombox.common.core.service.cache.CacheServer;
+import com.zsl0.component.common.core.service.cache.CacheServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;

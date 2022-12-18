@@ -1,5 +1,12 @@
-# Custom_box
-Custom_box (自定义匣子)
+# component
+zsl0-component，zsl0组件简单封装日常开发常用一些功能，时间插拔式组件，以导入依赖即可开箱即用，重写抽象类、yaml指定配置参数实现自定义功能。
+
+| 组件名称    | 功能    |
+|---------|-------|
+| common  | 公共组件  |
+| swagger | Api文档 |
+| auth    | 认证组件  |
+| log     | 日志组件  |
 
 ## 描述
 
@@ -20,6 +27,7 @@ Custom_box (自定义匣子)
 | swagger | 3.0.0 |
 | JWT | 3.18.2 |
 | hutool | 5.7.16 |
+
 
 
 ## 架构

@@ -13,7 +13,9 @@ import java.util.Objects;
 @ConfigurationProperties(prefix = "security.admin")
 public class SecurityAdminConfigurationProperties {
 
-    // 忽略路径
+    /**
+     * 忽略路径
+     */
     private String[] ignorePath;
 
     /**

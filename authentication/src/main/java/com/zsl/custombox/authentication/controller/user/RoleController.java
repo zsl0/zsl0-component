@@ -2,8 +2,7 @@ package com.zsl.custombox.authentication.controller.user;
 
 import com.zsl.custombox.authentication.controller.user.param.RoleAddParam;
 import com.zsl.custombox.authentication.controller.user.param.RoleModifyParam;
-import com.zsl.custombox.authentication.model.pojo.login.Role;
-import com.zsl.custombox.security.auth.core.annotation.Permissions;
+import com.zsl0.component.auth.core.annotation.Permissions;
 import org.springframework.web.bind.annotation.*;
 
 /**

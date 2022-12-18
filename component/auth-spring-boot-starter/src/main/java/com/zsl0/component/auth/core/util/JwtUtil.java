@@ -8,11 +8,13 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import com.zsl0.component.auth.core.exception.token.TokenGenerateException;
-import com.zsl0.component.auth.core.exception.token.TokenUnknownException;
-import com.zsl0.component.auth.core.exception.token.TokenVerifyFailedException;
+import com.zsl0.component.common.core.exception.auth.token.TokenGenerateException;
+import com.zsl0.component.common.core.exception.auth.token.TokenUnknownException;
+import com.zsl0.component.common.core.exception.auth.token.TokenVerifyFailedException;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author zsl0

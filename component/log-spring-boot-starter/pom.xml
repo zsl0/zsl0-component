@@ -40,7 +40,7 @@
 
     <build>
         <plugins>
-            <!--            编译-->
+            <!-- 编译-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -48,6 +48,31 @@
                 <configuration>
                     <source>${jdk.version}</source> <!-- depending on your project -->
                     <target>${jdk.version}</target> <!-- depending on your project -->
+                    <annotationProcessorPaths>
+                        <!-- 防止使用lombok 出现Java符号找不到错误-->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${org.projectlombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>0.2.0</version>
+                        </path>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>${project.parent.version}</version>
+                        </path>
+                        <!-- other annotation processors -->
+                    </annotationProcessorPaths>
+                    <!--                    <proc>none</proc>-->
                 </configuration>
             </plugin>
 

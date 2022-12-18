@@ -21,12 +21,12 @@
     </properties>
 
     <dependencies>
-<!--        &lt;!&ndash;        common组件&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.zsl0</groupId>-->
-<!--            <artifactId>zsl-common</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <!--        common组件-->
+        <dependency>
+            <groupId>com.zsl0</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
 <!--        &lt;!&ndash;        log(AccessLog、OperationLog)组件&ndash;&gt;-->
 <!--        <dependency>-->
@@ -35,12 +35,12 @@
 <!--            <version>1.0-SNAPSHOT</version>-->
 <!--        </dependency>-->
 
-<!--        &lt;!&ndash;        认证组件&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.zsl0</groupId>-->
-<!--            <artifactId>zsl-spring-boot-starter-security-auth</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <!--        认证组件-->
+        <dependency>
+            <groupId>com.zsl0</groupId>
+            <artifactId>auth-spring-boot-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <!--        API文档组件-->
         <dependency>

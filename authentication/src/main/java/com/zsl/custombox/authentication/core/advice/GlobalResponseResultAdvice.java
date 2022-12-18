@@ -1,10 +1,8 @@
 package com.zsl.custombox.authentication.core.advice;
 
-import com.zsl.custombox.common.core.http.NotResponseBody;
-import com.zsl.custombox.common.core.http.ResponseResult;
-import com.zsl.custombox.common.model.log.SystemLogContext;
-import com.zsl.custombox.common.util.JsonUtil;
-import com.zsl.custombox.common.util.SystemLogContextHolder;
+import cn.hutool.json.JSONUtil;
+import com.zsl0.component.common.core.http.NotResponseBody;
+import com.zsl0.component.common.core.http.ResponseResult;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
@@ -12,8 +10,6 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-
-import java.util.Objects;
 
 /**
  * 全局统一返回处理（为每个web模块配置此advcie,并限制basePackages, 防止拦截其它controller 如：Swagger2Controller）
@@ -40,15 +36,8 @@ public class GlobalResponseResultAdvice implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         // 若为 String类型，则直接返回 json字符串
         if (returnType.getGenericParameterType().equals(String.class)) {
-            SystemLogContextHolder.get().setRespCode(2000).setRespMsg("");
-            return JsonUtil.obj2Str(body);
+            return JSONUtil.toJsonStr(body);
         }
-        ResponseResult<Object> result = ResponseResult.success(body);
-        SystemLogContext systemLogContext = SystemLogContextHolder.get();
-        // 不走AccessLogInterceptor拦截器，systemLogContext.get为null
-        if (Objects.nonNull(systemLogContext)) {
-            systemLogContext.setRespCode(result.getCode()).setRespMsg(result.getMsg());
-        }
-        return result;
+        return ResponseResult.success(body);
     }
 }

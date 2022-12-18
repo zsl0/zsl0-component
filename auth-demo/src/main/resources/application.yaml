@@ -1,4 +1,4 @@
 security:
   admin:
     issuer: zsl0
-    requestHead: Authentication
+    request-head: Authentication

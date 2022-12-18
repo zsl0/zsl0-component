@@ -2,7 +2,7 @@ package com.zsl.custombox.authentication.config.database;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import com.zsl.custombox.common.util.CryptoUtil;
+import com.zsl0.util.auth.CryptoUtil;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

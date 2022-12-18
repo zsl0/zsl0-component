@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -23,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Import(SecurityAdminConfigurationProperties.class)
 public class SecurityAdminAutoConfiguration implements WebMvcConfigurer {
 
-    private SecurityAdminConfigurationProperties properties;
+    private final SecurityAdminConfigurationProperties properties;
 
     private static PermissionProvide permissionProvide;
 
