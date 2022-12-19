@@ -8,6 +8,7 @@ import com.zsl0.component.common.core.exception.auth.base.AuthCustomException;
  */
 public class TokenGenerateException extends AuthCustomException {
 
+
     public TokenGenerateException() {
     }
 

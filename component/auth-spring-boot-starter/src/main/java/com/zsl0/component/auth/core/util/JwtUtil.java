@@ -59,7 +59,7 @@ public class JwtUtil {
                 } else if (value instanceof List) {
                     builder.withClaim(key, (List) value);
                 } else {
-                    throw new TokenUnknownException();
+                    throw new TokenUnknownException(String.format("unknown value type = %s", value.getClass()));
                 }
             }
             token = builder.sign(algorithm);

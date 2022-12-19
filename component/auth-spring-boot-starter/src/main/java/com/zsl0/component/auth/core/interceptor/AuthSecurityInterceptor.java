@@ -41,9 +41,11 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
         String userId = this.checkToken(request);
 
         // 检查认证
-        this.checkAuthentication((HandlerMethod) handler, userId);
-        // 检查权限
-        this.checkPermissions((HandlerMethod) handler, userId);
+        if (handler instanceof HandlerMethod) {
+            this.checkAuthentication((HandlerMethod) handler, userId);
+            // 检查权限
+            this.checkPermissions((HandlerMethod) handler, userId);
+        }
         return true;
     }
 
@@ -53,7 +55,7 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
     private void checkAuthentication(HandlerMethod handler, String userId) {
         boolean hasAuthentication = handler.hasMethodAnnotation(RequireAuthentication.class);
         if (hasAuthentication && userId == null) {
-            throw new NotAuthenticationException();
+            throw new NotAuthenticationException("not login");
         }
     }
 
@@ -67,7 +69,7 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
         }
 
         if (Objects.isNull(userId)) {
-            throw new NotAuthenticationException();
+            throw new NotAuthenticationException("require login");
         }
 
         Permissions methodAnnotation = handler.getMethodAnnotation(Permissions.class);

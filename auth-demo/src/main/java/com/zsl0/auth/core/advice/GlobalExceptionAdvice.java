@@ -1,5 +1,7 @@
-package com.zsl0.component.common.core.advice;
+package com.zsl0.auth.core.advice;
 
+import com.zsl0.component.common.core.exception.ApiException;
+import com.zsl0.component.common.core.exception.GlobalException;
 import com.zsl0.component.common.core.exception.auth.authentication.AuthenticationFailedException;
 import com.zsl0.component.common.core.exception.auth.authentication.AuthorizationFailedException;
 import com.zsl0.component.common.core.exception.auth.authentication.NotAuthenticationException;
@@ -10,7 +12,6 @@ import com.zsl0.component.common.core.exception.auth.token.TokenUnknownException
 import com.zsl0.component.common.core.exception.auth.token.TokenVerifyFailedException;
 import com.zsl0.component.common.core.http.ResponseResult;
 import com.zsl0.component.common.core.http.ResponseResultStatus;
-import com.zsl0.component.common.core.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;

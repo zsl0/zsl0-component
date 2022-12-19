@@ -19,9 +19,10 @@ public interface ILogRecordService {
 
     /**
      * 保存 log
+     * todo 添加type，区分不同日志类型，细化日志存储
      */
     void record(String logRecord);
 
-    Long getUserId();
+    String getUserId();
 
 }

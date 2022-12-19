@@ -19,7 +19,7 @@ public class DefaultLogRecordServiceImpl implements ILogRecordService {
     }
 
     @Override
-    public Long getUserId() {
-        return 0l;
+    public String getUserId() {
+        return "0";
     }
 }

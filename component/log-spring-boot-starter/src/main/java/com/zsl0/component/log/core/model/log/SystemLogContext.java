@@ -12,7 +12,7 @@ import java.util.Date;
 public class SystemLogContext {
     // =========================== request data ===========================
     // 用户id(匿名为0)
-    private Long userId;
+    private String userId;
     // 请求号码，保证请求调用时请求号不变
     private Long requestNo;
     // host
@@ -40,7 +40,7 @@ public class SystemLogContext {
     public SystemLogContext() {
     }
 
-    public SystemLogContext(Long userId, Long requestNo, String host, String uri, String method, Date startTime, Long respTime, Integer respCode, String respMsg) {
+    public SystemLogContext(String userId, Long requestNo, String host, String uri, String method, Date startTime, Long respTime, Integer respCode, String respMsg) {
         this.userId = userId;
         this.requestNo = requestNo;
         this.host = host;
@@ -52,11 +52,11 @@ public class SystemLogContext {
         this.respMsg = respMsg;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public SystemLogContext setUserId(Long userId) {
+    public SystemLogContext setUserId(String userId) {
         this.userId = userId;
         return this;
     }

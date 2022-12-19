@@ -1,4 +1,4 @@
-package com.zsl0.component.common.core.advice;
+package com.zsl0.auth.core.advice;
 
 import cn.hutool.json.JSONUtil;
 import com.zsl0.component.common.core.http.NotResponseBody;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * create on 2022/5/15 19:10
  * email 249269610@qq.com
  */
-//@ControllerAdvice(basePackages = "com.zsl0.custombox.authentication.controller")
+@ControllerAdvice(basePackages = "com.zsl0.auth.controller")
 @Order(Integer.MAX_VALUE - 20)
 public class GlobalResponseResultAdvice implements ResponseBodyAdvice<Object> {
     @Override

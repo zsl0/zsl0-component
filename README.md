@@ -68,12 +68,52 @@ swagger:
 3. 使用swagger相关注解；
 
 ## log-spring-boot-starter
-1. 重写接口`ILogRecordService`，实现日志存储方式(默认使用logback打印)。
+1. 配置yaml：
+```yaml
+# 日志存储位置
+log:
+  storage-path: /Users/zsl0/IdeaProjects/gitProjects/zsl0-component/logs
+```
+
+2. 重写接口`ILogRecordService`，实现日志存储方式(默认使用logback打印)。
+```java
+package com.zsl0.auth.config.auth.log;
+
+import com.zsl0.component.auth.core.model.AuthInfo;
+import com.zsl0.component.auth.core.util.SecurityContextHolder;
+import com.zsl0.component.log.core.service.record.ILogRecordService;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+
+/**
+ * @author zsl0
+ * created on 2022/12/19 19:51
+ */
+@Component
+public class MyLogRecordServiceImpl implements ILogRecordService {
+    @Override
+    public void record(String logRecord) {
+        // todo 实现自定义存储日志方式 默认 log.info(logRecord);
+        System.out.println(logRecord);
+    }
+
+    @Override
+    public String getUserId() {
+        // todo 自定义获取当前用户唯一凭证
+        return Optional.ofNullable(SecurityContextHolder.getAuth())
+                .map(AuthInfo::getUuid)
+                .orElse("0");
+    }
+}
+```
+
 
 ## auth-spring-boot-starter
 1. 重写接口`PermissionProvide`，实现自定义权限认证方式，默认放行;
 - ACL
 - RBAC
+
 
 2. 实现登陆逻辑：
 ```java

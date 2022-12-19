@@ -28,3 +28,7 @@ swagger:
   controller-base-package: com.zsl0.auth.controller
   # 接口调试地址
 #  try-host:
+
+# 日志存储位置
+log:
+  storage-path: /Users/zsl0/IdeaProjects/gitProjects/zsl0-component/logs
