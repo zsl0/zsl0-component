@@ -4,7 +4,7 @@ security:
     # 发行人
     issuer: zsl0
     # 请求头
-    request-head: Authentication
+    request-head: Authorization
     # 忽略路径
     ignore-path: /api/login/*
     # 用户凭证key

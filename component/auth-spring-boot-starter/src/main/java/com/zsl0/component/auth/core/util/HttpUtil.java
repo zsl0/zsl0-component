@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class HttpUtil {
 
-    public static String HEAD = "Authentication-zsl0";
+    public static String HEAD = "Authorization-zsl0";
 
     /**
      * 获取请求头中存储token
