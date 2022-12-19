@@ -8,9 +8,9 @@ security:
     # 忽略路径
     ignore-path: /api/login/*
     # 用户凭证key
-    certificate-key:
+    certificate-key: UUID
     # 权限存储key
-    permissions-key:
+    permissions-key: PERMISSIONS
     # 密钥
     secret: secret:abc:zsl0
 
