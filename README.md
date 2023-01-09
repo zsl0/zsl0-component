@@ -35,7 +35,7 @@ zsl0-component，zsl0组件简单封装日常开发常用一些功能，实现�
 todo 架构图
 
 # Quick Start
-## swagger-spring-boot-starter
+## swagger-spring-boot-starter（API文档）
 
 1. 添加依赖：
 ```xml
@@ -67,7 +67,7 @@ swagger:
 
 3. 使用swagger相关注解；
 
-## log-spring-boot-starter
+## log-spring-boot-starter（日志）
 1. 配置yaml：
 ```yaml
 # 日志存储位置
@@ -109,7 +109,7 @@ public class MyLogRecordServiceImpl implements ILogRecordService {
 ```
 
 
-## auth-spring-boot-starter
+## auth-spring-boot-starter（鉴权）
 1. 重写接口`PermissionProvide`，实现自定义权限认证方式，默认放行;
 - ACL
 - RBAC
@@ -139,4 +139,4 @@ security:
     # 密钥
     secret: secret:abc:zsl0
 ```
-## common
+## common（公共依赖）
