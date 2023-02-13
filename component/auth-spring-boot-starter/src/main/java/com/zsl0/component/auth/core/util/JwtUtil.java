@@ -1,5 +1,6 @@
 package com.zsl0.component.auth.core.util;
 
+import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -15,6 +16,7 @@ import com.zsl0.component.common.core.exception.auth.token.TokenVerifyFailedExce
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author zsl0
@@ -39,27 +41,33 @@ public class JwtUtil {
                     .withIssuer(issuer)
                     .withSubject(subject)
                     .withExpiresAt(expire);
-            for (Map.Entry<String, Object> entry : claims.entrySet()) {
-                String key = entry.getKey();
-                Object value = entry.getValue();
-                if (value instanceof String) {
-                    builder.withClaim(key, (String) value);
-                } else if (value instanceof Boolean) {
-                    builder.withClaim(key, (Boolean) value);
-                } else if (value instanceof Integer) {
-                    builder.withClaim(key, (Integer) value);
-                } else if (value instanceof Double) {
-                    builder.withClaim(key, (Double) value);
-                } else if (value instanceof Long) {
-                    builder.withClaim(key, (Long) value);
-                } else if (value instanceof Date) {
-                    builder.withClaim(key, (Date) value);
-                } else if (value instanceof Map) {
-                    builder.withClaim(key, (Map) value);
-                } else if (value instanceof List) {
-                    builder.withClaim(key, (List) value);
-                } else {
-                    throw new TokenUnknownException(String.format("unknown value type = %s", value.getClass()));
+            if (Objects.nonNull(claims)) {
+                for (Map.Entry<String, Object> entry : claims.entrySet()) {
+                    String key = entry.getKey();
+                    Object value = entry.getValue();
+                    if (value instanceof String) {
+                        builder.withClaim(key, (String) value);
+                    } else if (value instanceof Boolean) {
+                        builder.withClaim(key, (Boolean) value);
+                    } else if (value instanceof Integer) {
+                        builder.withClaim(key, (Integer) value);
+                    } else if (value instanceof Double) {
+                        builder.withClaim(key, (Double) value);
+                    } else if (value instanceof Long) {
+                        builder.withClaim(key, (Long) value);
+                    } else if (value instanceof Date) {
+                        builder.withClaim(key, (Date) value);
+                    } else if (value instanceof Map) {
+                        builder.withClaim(key, (Map) value);
+                    } else if (value instanceof List) {
+                        builder.withClaim(key, (List) value);
+                    } else {
+                        if (Objects.isNull(value)) {
+                            continue;
+                        }
+                        builder.withClaim(key, JSONUtil.toJsonStr(value));
+//                        throw new TokenUnknownException(String.format("unknown value type = %s", value.getClass()));
+                    }
                 }
             }
             token = builder.sign(algorithm);
@@ -73,15 +81,26 @@ public class JwtUtil {
     /**
      * 获取Payload信息
      */
-    public static String getClaim(String token, String key, String secret, String issuer) {
+    public static <T> T getClaim(String token, String key, String secret, String issuer, Class<T> clazz) {
+        return getClaim(token, key, secret, issuer).as(clazz);
+    }
+
+    private static Claim getClaim(String token, String key, String secret, String issuer) {
         Map<String, Claim> claims = getClaims(token, secret, issuer);
-        return claims.get(key).asString();
+        return claims.get(key);
     }
 
     /**
      * 获取Payload信息
      */
-    public static Map<String, Claim> getClaims(String token, String secret, String issuer) {
+    public static <T> List<T> getClaims(String token, String key, String secret, String issuer, Class<T> clazz) {
+        return getClaims(token, secret, issuer).get(key).asList(clazz);
+    }
+
+    /**
+     * 获取Payload信息
+     */
+    private static Map<String, Claim> getClaims(String token, String secret, String issuer) {
         DecodedJWT decodedJWT = verity(token, secret, issuer);
         return decodedJWT.getClaims();
     }

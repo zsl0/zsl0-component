@@ -2,7 +2,7 @@ package com.zsl0.component.auth.core.interceptor;
 
 import com.zsl0.component.auth.core.annotation.Permissions;
 import com.zsl0.component.auth.core.annotation.RequireAuthentication;
-import com.zsl0.component.auth.core.model.AuthInfo;
+import com.zsl0.component.auth.core.model.DefaultUserDetails;
 import com.zsl0.component.auth.core.model.PermissionProvide;
 import com.zsl0.component.auth.core.util.HttpUtil;
 import com.zsl0.component.auth.core.util.SecurityContextHolder;
@@ -118,15 +118,23 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
         }
 
         // 根据token获取uuid、permissions
-        String userId = TokenUtil.getUuid(token);
+        String details = TokenUtil.getDetails(token);
+        String uuid = TokenUtil.getUuid(token);
+        Long userId = TokenUtil.getUserId(token);
+        Boolean authenticated = TokenUtil.getAuthenticated(token);
+        Boolean admin = TokenUtil.getAdmin(token);
         List<String> permissions = TokenUtil.getPermissions(token);
 
         // 将凭证放入全局结构体中
-        SecurityContextHolder.setAuth(AuthInfo.builder()
-                .uuid(userId)
-                .permissions(permissions)
+        SecurityContextHolder.setAuth(DefaultUserDetails.builder()
+                .details(details) // 暂不使用
+                .uuid(uuid)
+                .userId(userId)
+                .authenticated(authenticated)
+                .admin(admin)
+                .permissions(permissions.toArray(new String[]{}))
                 .build());
-        return userId;
+        return uuid;
     }
 
     @Override

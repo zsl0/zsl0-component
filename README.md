@@ -79,7 +79,7 @@ log:
 ```java
 package com.zsl0.auth.config.auth.log;
 
-import com.zsl0.component.auth.core.model.AuthInfo;
+import com.zsl0.component.auth.core.model.Authentication;
 import com.zsl0.component.auth.core.util.SecurityContextHolder;
 import com.zsl0.component.log.core.service.record.ILogRecordService;
 import org.springframework.stereotype.Component;
@@ -102,7 +102,8 @@ public class MyLogRecordServiceImpl implements ILogRecordService {
     public String getUserId() {
         // todo 自定义获取当前用户唯一凭证
         return Optional.ofNullable(SecurityContextHolder.getAuth())
-                .map(AuthInfo::getUuid)
+                .map(Authentication::getUserId)
+                .map(Object::toString)
                 .orElse("0");
     }
 }

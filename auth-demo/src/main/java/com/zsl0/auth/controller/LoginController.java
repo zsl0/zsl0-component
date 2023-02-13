@@ -27,7 +27,7 @@ public class LoginController {
         List<String> permissions = new ArrayList<>();
         permissions.add("admin");
         permissions.add("system");
-        String access_token = TokenUtil.generateToken("access_token", new Date(2022, Calendar.DECEMBER, 13, 12, 0), "1", permissions);
+        String access_token = TokenUtil.generateToken("access_token", new Date(2022, Calendar.DECEMBER, 13, 12, 0), null, "1", null, null, null, permissions);
         return "Bearer " + access_token;
     }
 
