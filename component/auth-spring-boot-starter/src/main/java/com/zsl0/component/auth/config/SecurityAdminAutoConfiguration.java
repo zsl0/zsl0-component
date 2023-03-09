@@ -1,5 +1,7 @@
 package com.zsl0.component.auth.config;
 
+import com.zsl0.component.auth.core.function.ExtendFunction;
+import com.zsl0.component.auth.core.function.DefaultExtendFunction;
 import com.zsl0.component.auth.core.interceptor.AuthSecurityInterceptor;
 import com.zsl0.component.auth.core.model.DefaultPermissionProvider;
 import com.zsl0.component.auth.core.model.PermissionProvide;
@@ -27,6 +29,8 @@ public class SecurityAdminAutoConfiguration implements WebMvcConfigurer {
 
     private static PermissionProvide permissionProvide;
 
+    private static ExtendFunction extendFunction;
+
     public SecurityAdminAutoConfiguration(SecurityAdminConfigurationProperties properties) {
         this.properties = properties;
         // todo 解决动态修改静态变量问题
@@ -39,14 +43,15 @@ public class SecurityAdminAutoConfiguration implements WebMvcConfigurer {
 
     // ==========================   拦截器   ==========================
     @Bean
-    public AuthSecurityInterceptor authSecurityInterceptor(PermissionProvide permissionProvide) {
+    public AuthSecurityInterceptor authSecurityInterceptor(PermissionProvide permissionProvide, ExtendFunction extendFunction) {
         SecurityAdminAutoConfiguration.permissionProvide = permissionProvide;
-        return new AuthSecurityInterceptor(permissionProvide);
+        SecurityAdminAutoConfiguration.extendFunction = extendFunction;
+        return new AuthSecurityInterceptor(permissionProvide, extendFunction);
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        AuthSecurityInterceptor authSecurityInterceptor = this.authSecurityInterceptor(SecurityAdminAutoConfiguration.permissionProvide);
+        AuthSecurityInterceptor authSecurityInterceptor = this.authSecurityInterceptor(SecurityAdminAutoConfiguration.permissionProvide, SecurityAdminAutoConfiguration.extendFunction);
         registry.addInterceptor(authSecurityInterceptor).excludePathPatterns(properties.getIgnorePath()).order(200);
     }
 
@@ -54,6 +59,12 @@ public class SecurityAdminAutoConfiguration implements WebMvcConfigurer {
     @ConditionalOnMissingBean(PermissionProvide.class)
     public PermissionProvide permissionProvider() {
         return new DefaultPermissionProvider();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(ExtendFunction.class)
+    public DefaultExtendFunction extendFunction() {
+        return new DefaultExtendFunction();
     }
 
 }

@@ -2,6 +2,7 @@ package com.zsl0.component.auth.core.interceptor;
 
 import com.zsl0.component.auth.core.annotation.Permissions;
 import com.zsl0.component.auth.core.annotation.RequireAuthentication;
+import com.zsl0.component.auth.core.function.ExtendFunction;
 import com.zsl0.component.auth.core.model.DefaultUserDetails;
 import com.zsl0.component.auth.core.model.PermissionProvide;
 import com.zsl0.component.auth.core.util.HttpUtil;
@@ -30,8 +31,11 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
 
     private PermissionProvide permissionProvide;
 
-    public AuthSecurityInterceptor(PermissionProvide permissionProvide) {
+    private ExtendFunction extend;
+
+    public AuthSecurityInterceptor(PermissionProvide permissionProvide, ExtendFunction extend) {
         this.permissionProvide = permissionProvide;
+        this.extend = extend;
     }
 
     @Override
@@ -45,6 +49,8 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
             this.checkAuthentication((HandlerMethod) handler, userId);
             // 检查权限
             this.checkPermissions((HandlerMethod) handler, userId);
+            // 扩展操作，对需要登录或者权限的请求
+            this.extend((HandlerMethod) handler);
         }
         return true;
     }
@@ -82,6 +88,18 @@ public class AuthSecurityInterceptor implements HandlerInterceptor {
         // 检查权限 需要自定义实现permissionService
         if (!permissionProvide.hasPermission(permission)) {
             throw new NotAuthorizationException();
+        }
+    }
+
+    /**
+     * 扩展操作
+     */
+    private void extend(HandlerMethod handler) {
+        boolean requirePermissions = handler.hasMethodAnnotation(Permissions.class);
+        boolean hasAuthentication = handler.hasMethodAnnotation(RequireAuthentication.class);
+
+        if (requirePermissions || hasAuthentication) {
+            extend.run();
         }
     }
 
