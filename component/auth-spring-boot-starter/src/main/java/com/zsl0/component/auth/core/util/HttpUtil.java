@@ -13,6 +13,8 @@ public class HttpUtil {
 
     /**
      * 获取请求头中存储token
+     * @param request ServletRequest对象
+     * @return token
      */
     public static String authentication(HttpServletRequest request) {
         String token = null;
@@ -22,4 +24,24 @@ public class HttpUtil {
         }
         return token;
     }
+
+    /**
+     * 获取客户端ip地址
+     * @param request ServletRequest对象
+     * @return ip地址
+     */
+    public static String getClientIpAddress(HttpServletRequest request) {
+        String ip = request.getHeader("X-Forwarded-For");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return ip;
+    }
+
 }

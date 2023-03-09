@@ -228,7 +228,7 @@ public class TokenUtil {
      */
     public static boolean isExpire(String token) {
         Long expire = getExpire(token);
-        return expire > System.currentTimeMillis();
+        return expire < System.currentTimeMillis();
     }
 
     /**

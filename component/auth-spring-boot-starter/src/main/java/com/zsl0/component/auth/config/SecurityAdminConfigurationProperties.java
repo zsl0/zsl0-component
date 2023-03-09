@@ -1,7 +1,6 @@
 package com.zsl0.component.auth.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Objects;
 
@@ -41,7 +40,7 @@ public class SecurityAdminConfigurationProperties {
     /**
      * 请求头
      */
-    public String requestHead = "Authentication-zsl0";
+    public String requestHead = "Authorization-zsl0";
 
     private static final String[] DEFAULT_IGNORE_PATH = {
             // swagger相关
