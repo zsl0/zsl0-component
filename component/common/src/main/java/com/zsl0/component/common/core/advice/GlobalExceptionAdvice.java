@@ -3,6 +3,7 @@ package com.zsl0.component.common.core.advice;
 import com.zsl0.component.common.core.exception.auth.authentication.AuthenticationFailedException;
 import com.zsl0.component.common.core.exception.auth.authentication.AuthorizationFailedException;
 import com.zsl0.component.common.core.exception.auth.authentication.NotAuthenticationException;
+import com.zsl0.component.common.core.exception.auth.authentication.NotAuthorizationException;
 import com.zsl0.component.common.core.exception.auth.base.AuthCustomException;
 import com.zsl0.component.common.core.exception.auth.token.TokenExpireException;
 import com.zsl0.component.common.core.exception.auth.token.TokenGenerateException;
@@ -60,6 +61,8 @@ public class GlobalExceptionAdvice {
         ResponseResultStatus status = null;
         if (e instanceof NotAuthenticationException) {
             status = ResponseResultStatus.NOT_LOGIN;
+        } else if (e instanceof NotAuthorizationException) {
+            status = ResponseResultStatus.FORBIDDEN;
         } else if (e instanceof TokenExpireException) {
             status = ResponseResultStatus.NOT_LOGIN;
         } else if (e instanceof TokenGenerateException) {
