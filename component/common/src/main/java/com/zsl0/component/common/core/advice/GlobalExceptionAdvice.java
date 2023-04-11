@@ -58,7 +58,7 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler(AuthCustomException.class)
     public ResponseResult<Void> auth(AuthCustomException e) {
-        ResponseResultStatus status = null;
+        ResponseResultStatus status;
         if (e instanceof NotAuthenticationException) {
             status = ResponseResultStatus.NOT_LOGIN;
         } else if (e instanceof NotAuthorizationException) {
@@ -79,9 +79,11 @@ public class GlobalExceptionAdvice {
             status = ResponseResultStatus.BAD_REQUEST;
         }
 
-        log.info("[AuthCustomException] 认证异常，ResponseResultStatus={}，message={}", status, e.getMessage());
+        String msg = Objects.isNull(e.getMessage()) ? status.getMsg() : e.getMessage();
+
+        log.info("[AuthCustomException] 认证异常，ResponseResultStatus={}，message={}", status, msg);
         return ResponseResult.custom(status.getCode(),
-                Objects.isNull(e.getMessage()) ? status.getMsg() : e.getMessage()
+                msg
                 , null);
     }
 
