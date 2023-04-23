@@ -9,11 +9,14 @@ import com.zsl0.component.common.core.exception.auth.token.TokenExpireException;
 import com.zsl0.component.common.core.exception.auth.token.TokenGenerateException;
 import com.zsl0.component.common.core.exception.auth.token.TokenUnknownException;
 import com.zsl0.component.common.core.exception.auth.token.TokenVerifyFailedException;
+import com.zsl0.component.common.core.exception.collector.ErrorCollector;
 import com.zsl0.component.common.core.http.ResponseResult;
 import com.zsl0.component.common.core.http.ResponseResultStatus;
 import com.zsl0.component.common.core.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -35,6 +38,9 @@ public class GlobalExceptionAdvice {
 
     static Logger log = LoggerFactory.getLogger(GlobalExceptionAdvice.class);
 
+    @Autowired
+    ErrorCollector errorCollector;
+
     /**
      * 全局异常处理（兜底捕捉）
      */
@@ -48,7 +54,11 @@ public class GlobalExceptionAdvice {
         }
 
         // 打印错误信息
-        log.info("[Throwable] 发生异常，message={}", t.getMessage());
+        log.info("[Throwable] 发生异常，message={}", t.toString());
+
+        // 收集错误信息
+        errorCollector.collectionError(t);
+
         return ResponseResult.failed(t.getMessage());
     }
 
@@ -81,7 +91,7 @@ public class GlobalExceptionAdvice {
 
         String msg = Objects.isNull(e.getMessage()) ? status.getMsg() : e.getMessage();
 
-        log.info("[AuthCustomException] 认证异常，ResponseResultStatus={}，message={}", status, msg);
+        log.info("[AuthCustomException] 认证异常，ResponseResultStatus={}，message={}", status, e.toString());
         return ResponseResult.custom(status.getCode(),
                 msg
                 , null);
@@ -90,8 +100,8 @@ public class GlobalExceptionAdvice {
     /**
      * 捕捉 Validator参数异常
      */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseResult<Map<String, String>> methodArgumentNotValid(MethodArgumentNotValidException e) {
+    @ExceptionHandler(BindException.class)
+    public ResponseResult<Map<String, String>> bindException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 

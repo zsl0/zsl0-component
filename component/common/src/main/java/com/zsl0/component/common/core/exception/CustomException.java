@@ -10,8 +10,6 @@ import lombok.EqualsAndHashCode;
  * create on 2022/5/15 19:29
  * email 249269610@qq.com
  */
-@EqualsAndHashCode(callSuper = true)
-@Data
 public class CustomException extends RuntimeException {
     private String message;
 
