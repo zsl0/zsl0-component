@@ -2,6 +2,8 @@ package com.zsl0.component.auth.core.util;
 
 import com.zsl0.component.auth.core.model.Authentication;
 
+import java.util.Objects;
+
 /**
  * 存储全局用户认证信息
  *
@@ -10,7 +12,7 @@ import com.zsl0.component.auth.core.model.Authentication;
  * email 249269610@qq.com
  */
 public class SecurityContextHolder {
-    private static ThreadLocal<Authentication> SECURITY_CONTEXT = new ThreadLocal<>();
+    private static final ThreadLocal<Authentication> SECURITY_CONTEXT = new ThreadLocal<>();
 //
 //    public static Authentication getAuth() {
 //        Authentication authentication = Optional.ofNullable(SECURITY_CONTEXT.get()).orElse(new Authentication() {
@@ -58,5 +60,9 @@ public class SecurityContextHolder {
 
     public static void clear() {
         SECURITY_CONTEXT.remove();
+    }
+
+    public static boolean isLogin() {
+        return Objects.nonNull(SECURITY_CONTEXT.get());
     }
 }
