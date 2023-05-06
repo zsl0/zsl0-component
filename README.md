@@ -109,6 +109,27 @@ public class MyLogRecordServiceImpl implements ILogRecordService {
 }
 ```
 
+3. 使用@LogRecord注解记录日志
+```java
+public class UserServiceImpl implements UserService {
+    // 省略...
+    @Override
+    @LogRecord(value = "#{name}修改用户信息为#{param}", bizNo = "1")
+    public void modifyUser(UserModifyParam param) {
+        // 日志记录添加变量
+        LogRecordContext.setVariable("name", "zsl0");
+        
+        User user = UserConverter.INSTANCE.toPojo(param);
+
+        // md5加密
+        if (Objects.nonNull(user.getPassword())) {
+            user.setPassword(CryptoUtil.md5Hex(user.getPassword()));
+        }
+
+        userMapper.updateUserInfo(user);
+    }
+}
+```
 
 ## auth-spring-boot-starter（鉴权）
 1. 重写接口`PermissionProvide`，实现自定义权限认证方式，默认放行;
