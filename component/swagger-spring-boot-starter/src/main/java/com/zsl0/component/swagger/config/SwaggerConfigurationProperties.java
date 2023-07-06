@@ -23,24 +23,41 @@ public class SwaggerConfigurationProperties {
     private String applicationName;
 
     /**
-     * 应用程序版本
-     */
-    private String applicationVersion;
-
-    /**
      * 应用程序描述
      */
     private String applicationDescription;
 
     /**
-     * 接口调试地址
+     * 应用程序版本
      */
-    private String tryHost;
+    private String applicationVersion;
+
+    /**
+     * 应用程序名称
+     */
+    private String passwordTokenUrl;
+
+    /**
+     * 分组名称
+     */
+    private String groupName;
 
     /**
      * controller扫描包
      */
     private String controllerBasePackage;
+
+    /**
+     * 服务url
+     */
+    private String serviceUrl;
+
+    /**
+     *
+     */
+    private String basePath;
+
+
 
     public Boolean getEnable() {
         return enable;
@@ -74,19 +91,43 @@ public class SwaggerConfigurationProperties {
         this.applicationDescription = applicationDescription;
     }
 
-    public String getTryHost() {
-        return tryHost;
-    }
-
-    public void setTryHost(String tryHost) {
-        this.tryHost = tryHost;
-    }
-
     public String getControllerBasePackage() {
         return controllerBasePackage;
     }
 
     public void setControllerBasePackage(String controllerBasePackage) {
         this.controllerBasePackage = controllerBasePackage;
+    }
+
+    public String getPasswordTokenUrl() {
+        return passwordTokenUrl;
+    }
+
+    public void setPasswordTokenUrl(String passwordTokenUrl) {
+        this.passwordTokenUrl = passwordTokenUrl;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getServiceUrl() {
+        return serviceUrl;
+    }
+
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+    }
+
+    public String getBasePath() {
+        return basePath;
+    }
+
+    public void setBasePath(String basePath) {
+        this.basePath = basePath;
     }
 }
