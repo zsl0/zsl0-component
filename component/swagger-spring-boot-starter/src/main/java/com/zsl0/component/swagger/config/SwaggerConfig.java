@@ -76,8 +76,8 @@ public class SwaggerConfig {
                 .securityContexts(securityContexts)
                 .securitySchemes(securitySchemes)
                 .apiInfo(apiInfo())
-                .enable(swaggerProperties.getEnable())
-                .groupName(swaggerProperties.getGroupName());
+                .enable(swaggerProperties.getEnable());
+//                .groupName(swaggerProperties.getGroupName());
     }
 
 
