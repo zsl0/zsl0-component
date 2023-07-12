@@ -12,43 +12,9 @@ import java.util.Objects;
  * email 249269610@qq.com
  */
 public class SecurityContextHolder {
+
+    // todo 解决ThreadLocal线程安全问题
     private static final ThreadLocal<Authentication> SECURITY_CONTEXT = new ThreadLocal<>();
-//
-//    public static Authentication getAuth() {
-//        Authentication authentication = Optional.ofNullable(SECURITY_CONTEXT.get()).orElse(new Authentication() {
-//            @Override
-//            public String getUuid() {
-//                return null;
-//            }
-//
-//            @Override
-//            public Object getDetails() {
-//                return null;
-//            }
-//
-//            @Override
-//            public Long getUserId() {
-//                return -1L;
-//            }
-//
-//            @Override
-//            public boolean isAuthenticated() {
-//                return false;
-//            }
-//
-//            @Override
-//            public String[] getRoles() {
-//                return new String[0];
-//            }
-//
-//            @Override
-//            public boolean isAdmin() {
-//                return false;
-//            }
-//        });
-//        setAuth(authentication);
-//        return authentication;
-//    }
 
     public static void setAuth(Authentication authentication) {
         SECURITY_CONTEXT.set(authentication);
