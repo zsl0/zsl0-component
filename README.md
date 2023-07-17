@@ -54,15 +54,19 @@ swagger:
   # 是否开启
   enable: true
   # 应用程序名称
-  application-name: 登陆模块
+  application-name: 后台管理项目
   # 应用程序版本
   application-version: v0.0.1
   # 应用程序描述
-  application-description: 功能：登录案例，整合zsl0组件
+  application-description: 功能：后台管理接口文档，用户、角色、菜单、认证、授权等接口
   # controller扫描包
-  controller-base-package: com.zsl0.auth.controller
-  # 接口调试地址
-#  try-host: 
+  controller-base-package: com.zsl0.cloud.admin.controller
+  # 分组名称
+  group-name: ${spring.application.name}
+  # 获取token url
+  password-token-url: http://${server.ip}:${server.port}
+  # 服务url
+  service-url: http://${server.ip}:${port.gateway}/${spring.application.name}
 ```
 
 3. 使用swagger相关注解；

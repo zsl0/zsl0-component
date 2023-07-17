@@ -13,6 +13,7 @@ import com.zsl0.component.common.core.exception.collector.ErrorCollector;
 import com.zsl0.component.common.core.http.ResponseResult;
 import com.zsl0.component.common.core.http.ResponseResultStatus;
 import com.zsl0.component.common.core.exception.*;
+import com.zsl0.util.log.LogUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class GlobalExceptionAdvice {
 
     static Logger log = LoggerFactory.getLogger(GlobalExceptionAdvice.class);
 
-    @Autowired
+    @Autowired(required = false)
     ErrorCollector errorCollector;
 
     /**
@@ -54,10 +55,11 @@ public class GlobalExceptionAdvice {
         }
 
         // 打印错误信息
-        log.info("[Throwable] 发生异常，message={}", t.toString());
+        log.info("[Throwable] 发生异常，message={}", LogUtil.getLogStackTrace(t));
 
         // 收集错误信息
-        errorCollector.collectionError(t);
+        if (Objects.nonNull(errorCollector))
+            errorCollector.collectionError(t);
 
         return ResponseResult.failed(t.getMessage());
     }
@@ -91,7 +93,7 @@ public class GlobalExceptionAdvice {
 
         String msg = Objects.isNull(e.getMessage()) ? status.getMsg() : e.getMessage();
 
-        log.info("[AuthCustomException] 认证异常，ResponseResultStatus={}，message={}", status, e.toString());
+        log.info("[AuthCustomException] 认证异常，ResponseResultStatus={}，message={}", status, LogUtil.getLogStackTrace(e));
         return ResponseResult.custom(status.getCode(),
                 msg
                 , null);
