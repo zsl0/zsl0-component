@@ -1,7 +1,7 @@
 package com.zsl0.auth.config.auth;
 
-import com.zsl0.component.auth.core.model.PermissionProvide;
-import com.zsl0.component.auth.core.util.SecurityContextHolder;
+import com.zsl0.auth.core.model.PermissionProvide;
+import com.zsl0.auth.core.util.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

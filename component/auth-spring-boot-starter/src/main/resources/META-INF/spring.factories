@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.zsl0.component.auth.config.SecurityAdminAutoConfiguration
+com.zsl0.auth.config.SecurityAdminAutoConfiguration

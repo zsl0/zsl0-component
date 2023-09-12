@@ -2,7 +2,7 @@ package com.zsl0.demo.authentication.controller.user;
 
 import com.zsl0.demo.authentication.controller.user.param.RoleAddParam;
 import com.zsl0.demo.authentication.controller.user.param.RoleModifyParam;
-import com.zsl0.component.auth.core.annotation.Permissions;
+import com.zsl0.auth.core.annotation.Permissions;
 import org.springframework.web.bind.annotation.*;
 
 /**

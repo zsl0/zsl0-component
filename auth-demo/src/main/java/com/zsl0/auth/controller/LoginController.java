@@ -1,8 +1,8 @@
 package com.zsl0.auth.controller;
 
-import com.zsl0.component.auth.core.annotation.Permissions;
-import com.zsl0.component.auth.core.util.TokenUtil;
-import com.zsl0.component.log.core.annotation.LogRecord;
+import com.zsl0.auth.core.annotation.Permissions;
+import com.zsl0.auth.core.util.TokenUtil;
+import com.zsl0.log.core.annotation.LogRecord;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

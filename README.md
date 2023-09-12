@@ -83,9 +83,9 @@ log:
 ```java
 package com.zsl0.auth.config.auth.log;
 
-import com.zsl0.component.auth.core.model.Authentication;
-import com.zsl0.component.auth.core.util.SecurityContextHolder;
-import com.zsl0.component.log.core.service.record.ILogRecordService;
+import com.zsl0.auth.core.model.Authentication;
+import com.zsl0.auth.core.util.SecurityContextHolder;
+import com.zsl0.log.core.service.record.ILogRecordService;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -144,9 +144,9 @@ public class UserServiceImpl implements UserService {
 ```java
 package com.zsl0.project.webservice.core.auth;
 
-import com.zsl0.component.auth.core.model.Authentication;
-import com.zsl0.component.auth.core.model.PermissionProvide;
-import com.zsl0.component.auth.core.util.SecurityContextHolder;
+import com.zsl0.auth.core.model.Authentication;
+import com.zsl0.auth.core.model.PermissionProvide;
+import com.zsl0.auth.core.util.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -182,8 +182,8 @@ package com.zsl0.project.webservice.service.auth.impl;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.zsl0.component.auth.core.util.TokenUtil;
-import com.zsl0.component.common.core.exception.auth.authentication.AuthenticationFailedException;
+import com.zsl0.auth.core.util.TokenUtil;
+import com.zsl0.common.core.exception.auth.authentication.AuthenticationFailedException;
 import com.zsl0.project.repo.mapper.auth.UserMapper;
 import com.zsl0.project.repo.pojo.auth.Role;
 import com.zsl0.project.repo.pojo.auth.User;
@@ -452,10 +452,10 @@ security:
 ```java
 package com.zsl0.project.webservice.core.auth;
 
-import com.zsl0.component.auth.core.function.ExtendFunction;
-import com.zsl0.component.auth.core.model.Authentication;
-import com.zsl0.component.auth.core.util.SecurityContextHolder;
-import com.zsl0.component.common.core.exception.auth.authentication.AuthorizationFailedException;
+import com.zsl0.auth.core.function.ExtendFunction;
+import com.zsl0.auth.core.model.Authentication;
+import com.zsl0.auth.core.util.SecurityContextHolder;
+import com.zsl0.common.core.exception.auth.authentication.AuthorizationFailedException;
 import com.zsl0.project.repo.mapper.auth.UserMapper;
 import com.zsl0.project.repo.pojo.auth.User;
 import org.slf4j.Logger;

@@ -1,8 +1,8 @@
 package com.zsl0.auth.config.log;
 
-import com.zsl0.component.auth.core.model.Authentication;
-import com.zsl0.component.auth.core.util.SecurityContextHolder;
-import com.zsl0.component.log.core.service.record.ILogRecordService;
+import com.zsl0.auth.core.model.Authentication;
+import com.zsl0.auth.core.util.SecurityContextHolder;
+import com.zsl0.log.core.service.record.ILogRecordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.zsl0.component.log.config.AccessLogAutoConfiguration
+com.zsl0.log.config.AccessLogAutoConfiguration
